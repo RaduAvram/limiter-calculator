@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speaker and Amp Limiter Calculator (DriveRack PA2)</title>
+<style>
+:root{--bg:#f5f6f8;--card:#ffffff;--ink:#1b1f24;--mut:#5b6470;--line:#d8dde3;--acc:#2563eb;--warn:#b45309}
+@media (prefers-color-scheme: dark){:root{--bg:#0f1216;--card:#171b21;--ink:#e7ebf0;--mut:#9aa4b2;--line:#2a313b;--acc:#60a5fa;--warn:#fbbf24}}
+*{box-sizing:border-box}
+body{margin:0;padding:16px;font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+main{max-width:920px;margin:0 auto}
+h1{font-size:20px;margin:4px 0 2px}
+.sub{color:var(--mut);margin:0 0 16px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+.full{grid-column:1/-1}
+.card h2{font-size:12px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+label{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:8px 0;font-size:14px}
+.u{color:var(--mut);font-size:12px;white-space:nowrap;margin-left:4px}
+.in{display:flex;align-items:center}
+input,select{width:96px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink);font:inherit;text-align:right}
+.hint{font-size:12px;color:var(--mut);margin:2px 0 0}
+.big{font-size:38px;font-weight:700;color:var(--acc);font-variant-numeric:tabular-nums;margin-top:4px}
+.bar{position:relative;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--line),var(--acc));opacity:.8;margin:18px 0 4px}
+.marker{position:absolute;top:-5px;width:3px;height:22px;background:var(--ink);border-radius:2px;transform:translateX(-50%)}
+.scale{display:flex;justify-content:space-between;font-size:11px;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:14px;font-variant-numeric:tabular-nums}
+td{padding:6px 0;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;white-space:nowrap}
+.warn{color:var(--warn);font-size:13px;margin-top:10px}
+.warn div{margin-top:4px}
+.err{color:var(--warn);font-size:13px;min-height:1em}
+.row{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.summary{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:var(--mut);margin-top:10px;word-break:break-word}
+.note{font-size:12.5px;color:var(--mut);margin-top:14px}
+.note li{margin:3px 0}
+</style>
+</head>
+<body>
+<main>
+  <h1>Speaker and Amp Limiter Calculator</h1>
+  <p class="sub">Works out the DriveRack PA2 limiter threshold (dBFS) from the speaker's continuous and peak ratings, the amp's power, and an optional venue dBA limit.</p>
+
+  <div class="grid">
+
+    <section class="card">
+      <h2>Speaker</h2>
+      <label>Continuous (RMS) power <span class="in"><input id="pc" type="number" value="300" min="0" step="any"><span class="u">W</span></span></label>
+      <label>Peak power <span class="in"><input id="pp" type="number" value="600" min="0" step="any"><span class="u">W</span></span></label>
+      <label>Impedance <span class="in"><input id="z" type="number" value="8" min="0" step="any"><span class="u">Ω</span></span></label>
+      <label>Sensitivity (1 W / 1 m) <span class="in"><input id="sens" type="number" value="98" step="any"><span class="u">dB</span></span></label>
+      <p class="hint">Sensitivity is needed for the SPL estimate and the venue limit.</p>
+    </section>
+
+    <section class="card">
+      <h2>Amplifier</h2>
+      <label>Power into 4 Ω <span class="in"><input id="p4" type="number" value="1000" min="0" step="any"><span class="u">W</span></span></label>
+      <label>Power into 8 Ω <span class="in"><input id="p8" type="number" value="600" min="0" step="any"><span class="u">W</span></span></label>
+      <label>Input sensitivity (full power) <span class="in"><input id="sin" type="number" value="1.4" min="0" step="any"><span class="u">Vrms</span></span></label>
+      <label>Attenuator cut <span class="in"><input id="atten" type="number" value="0" step="any"><span class="u">dB</span></span></label>
+      <p class="hint">Input sensitivity is from the amp datasheet. Attenuator cut is 0 at full gain.</p>
+    </section>
+
+    <section class="card">
+      <h2>Limiter (PA2)</h2>
+      <label>Program crest factor <span class="in"><input id="cf" type="number" value="6" min="0" step="any"><span class="u">dB</span></span></label>
+      <label>Extra safety margin <span class="in"><input id="margin" type="number" value="0" min="0" step="any"><span class="u">dB</span></span></label>
+      <label>Over Easy (for your notes) <span class="in"><select id="oe"><option>OFF</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></span></label>
+      <p class="hint">6 dB is a common test-noise figure. Music is often 10 to 12 dB. Higher crest means a lower threshold.</p>
+    </section>
+
+    <section class="card">
+      <h2>Venue limit</h2>
+      <label>Max level <span class="in"><input id="lim" type="number" value="100" step="any"><span class="u">dBA</span></span></label>
+      <label>Measured at <span class="in"><input id="dist" type="number" value="10" min="0" step="any"><span class="u">m</span></span></label>
+      <label>Speakers at same spot <span class="in"><input id="nspk" type="number" value="1" min="1" step="1"><span class="u">pcs</span></span></label>
+      <label>dBA correction <span class="in"><input id="corr" type="number" value="0" step="any"><span class="u">dB</span></span></label>
+      <p class="hint">Clear the limit field for no venue limit. The correction is dBA minus unweighted SPL for your program, usually negative. 0 is the cautious choice. A meter reading can justify a negative value.</p>
+    </section>
+
+    <section class="card full">
+      <h2>Result</h2>
+      <div class="err" id="err"></div>
+      <div class="big" id="thr">—</div>
+      <div id="thrSub" class="hint"></div>
+      <div class="bar"><div class="marker" id="mk" style="left:0%"></div></div>
+      <div class="scale"><span>-60</span><span>-40</span><span>-20</span><span>0 dBFS</span></div>
+      <div class="warn" id="warn"></div>
+      <table id="tbl"></table>
+      <div class="row"><button id="copy" type="button">Copy setting</button><span id="cpMsg" class="u"></span></div>
+      <div class="summary" id="summary"></div>
+    </section>
+
+  </div>
+
+  <div class="note">
+    <strong>How it works</strong>
+    <ul>
+      <li>The speaker's continuous limit is V = √(P × Z). The amp's full-power voltage is found the same way from its power into the speaker's impedance.</li>
+      <li>Peak power means the instantaneous peak, V²/Z. For a sine wave that is twice the RMS power, which is why "2× continuous" is the usual peak rating.</li>
+      <li>The PA2 limiter detects RMS, has a fixed ∞:1 ratio, and can overshoot by about 3 dB. The peak check uses the crest factor plus that overshoot.</li>
+      <li>The venue limit assumes free-field inverse-square falloff (6 dB per doubling of distance). Indoors, reflections raise the level, so measure at the venue and adjust the correction.</li>
+      <li>The PA2 scale assumes 0 dBFS = +20 dBu at the output. The amp's full-power point is taken from its input sensitivity and attenuator cut.</li>
+      <li>Over Easy changes the knee shape, not this math. Use the 3 dB overshoot margin when you run it hard.</li>
+      <li>The PA2 has one limiter per output band. Run this once for each band, using that band's amp and speaker.</li>
+    </ul>
+  </div>
+</main>
+
+<script>
+const OVERSHOOT = 3;      // PA2 limiter transient overshoot, dB
+const REF_DBU = 0.775;    // dBu reference voltage
+const FS_AT_DBU = 20;     // PA2: 0 dBFS = +20 dBu at output
+
+const $ = id => document.getElementById(id);
+const v = id => parseFloat($(id).value);
+const db = x => 20 * Math.log10(x);
+const f = (x, d = 1) => (isFinite(x) ? x.toFixed(d) : '—');
+let lastSummary = '';
+
+function calc() {
+  const Pc = v('pc'), Pp = v('pp'), Z = v('z'), S = v('sens');
+  const P4 = v('p4'), P8 = v('p8'), Sin = v('sin'), A = v('atten');
+  const CF = v('cf'), M = v('margin');
+  const Lim = v('lim'), d = v('dist'), N = v('nspk'), c = v('corr');
+  const venueOn = isFinite(Lim);
+
+  const bad = [Pc, Pp, Z, P4, P8, Sin, CF, M, A].some(x => !isFinite(x));
+  const badVenue = venueOn && (!(d > 0) || !(N >= 1) || !isFinite(c));
+  if (bad || badVenue || Pc <= 0 || Pp <= 0 || Z <= 0 || P4 <= 0 || P8 <= 0 || Sin <= 0 || CF < 0 || M < 0) {
+    $('err').textContent = 'Check the inputs. Powers, impedance and input sensitivity must be above 0. Crest factor and margin cannot be negative. Distance must be above 0, and speakers at 1 or more.';
+    return;
+  }
+  $('err').textContent = '';
+
+  // Amp power into the speaker's impedance (linear between 4 and 8 Ω, clamped outside that range)
+  const Pa = Z <= 4 ? P4 : Z >= 8 ? P8 : P4 + (P8 - P4) * (Z - 4) / 4;
+  const Va = Math.sqrt(Pa * Z);     // amp full-power RMS volts into Z
+  const Vc = Math.sqrt(Pc * Z);     // speaker continuous RMS volts
+  const Vp = Math.sqrt(Pp * Z);     // speaker peak (instantaneous) volts
+
+  // Ceilings in dB relative to amp full-power RMS
+  const Lc = Math.min(0, db(Vc / Va));               // RMS ceiling (amp or speaker limited)
+  const Lp = Math.min(db(Math.SQRT2), db(Vp / Va));  // peak ceiling (amp peak is +3.01 dB)
+
+  // Threshold candidates, dB relative to amp full-power RMS
+  const Tr = Lc - M;
+  const Tp = Lp - CF - OVERSHOOT - M;
+
+  // Venue dBA limit: the most power each speaker may put out, found from the level at the measurement point
+  let Ts = Infinity;
+  if (venueOn && isFinite(S)) {
+    const L1m = (Lim - c) - 10 * Math.log10(N) + 20 * Math.log10(d);   // allowed unweighted SPL per speaker at 1 m
+    const Pallowed = Math.pow(10, (L1m - S) / 10);
+    Ts = 10 * Math.log10(Pallowed / Pa);
+  }
+
+  const T = Math.min(Tr, Tp, Ts);
+  let binding;
+  if (venueOn && Ts < Math.min(Tr, Tp)) binding = 'venue dBA limit';
+  else if (Tr <= Tp) binding = 'continuous (RMS) rating';
+  else binding = 'peak rating (crest factor + overshoot)';
+
+  // PA2 scale
+  const clipDbu = db(Sin / REF_DBU) + A;     // PA2 output level (dBu) that drives the amp to full power
+  const thrDbfs = clipDbu - FS_AT_DBU + T;
+  const thrSafe = Math.floor(thrDbfs * 10) / 10;   // rounded down, the safe side
+  const thrDbu = clipDbu + T;
+
+  // What the amp actually delivers at the threshold
+  const Prms = Pa * Math.pow(10, T / 10);
+  const Ppk = Prms * Math.pow(10, CF / 10);
+  const SPL = S + 10 * Math.log10(Prms);                                // dB SPL at 1 m (NaN if no sensitivity)
+  const dBAatVenue = SPL + 10 * Math.log10(N) - 20 * Math.log10(d) + c; // NaN if venue fields missing
+
+  // Warnings
+  const warns = [];
+  if (Pa > Pc) warns.push(`The amp can deliver ${f(Pa, 0)} W into this load, above the speaker's ${f(Pc, 0)} W continuous rating. The limiter is doing real work here.`);
+  if (Pp < Pc) warns.push('The peak rating is lower than the continuous rating. Check the spec sheet.');
+  if (venueOn && !isFinite(S)) warns.push('Enter the speaker sensitivity to apply the venue dBA limit.');
+  if (thrSafe < -60) warns.push('The threshold is below the PA2 floor of -60 dBFS. Check the inputs or reduce the amp gain.');
+
+  $('thr').textContent = f(thrSafe) + ' dBFS';
+  $('thrSub').textContent = `Set the PA2 limiter threshold to ${f(thrSafe)} dBFS. The limiting factor is the ${binding}.`;
+  $('mk').style.left = Math.max(0, Math.min(100, (thrSafe + 60) / 60 * 100)) + '%';
+  $('warn').innerHTML = warns.map(w => '<div>⚠ ' + w + '</div>').join('');
+
+  const venueRow = venueOn
+    ? `${f(Lim, 0)} dBA at ${f(d, 1)} m`
+    : 'not set';
+  $('tbl').innerHTML = [
+    ['Amp full power into this load', `${f(Pa, 0)} W &middot; ${f(Va)} V rms`],
+    ['Speaker continuous limit', `${f(Pc, 0)} W &middot; ${f(Vc)} V rms`],
+    ['Speaker peak limit', `${f(Pp, 0)} W &middot; ${f(Vp)} V peak`],
+    ['Amp full-power point at PA2 output', `${f(clipDbu)} dBu (${f(clipDbu - FS_AT_DBU)} dBFS)`],
+    ['Threshold from continuous rating', `${f(clipDbu - FS_AT_DBU + Tr)} dBFS`],
+    ['Threshold from peak rating', `${f(clipDbu - FS_AT_DBU + Tp)} dBFS`],
+    ['Threshold from venue limit', isFinite(Ts) ? `${f(clipDbu - FS_AT_DBU + Ts)} dBFS` : 'not applied'],
+    ['Threshold in dBu at PA2 output', `${f(thrDbu)} dBu`],
+    ['Venue limit', venueRow],
+    ['Predicted level at venue point', isFinite(dBAatVenue) ? `${f(dBAatVenue)} dBA` : '—'],
+    ['Expected RMS power at threshold', `${f(Prms, 1)} W`],
+    ['Expected peak power at threshold', `${f(Ppk, 0)} W`],
+    ['Approx. SPL at 1 m at threshold', isFinite(SPL) ? `${f(SPL)} dB` : 'enter sensitivity']
+  ].map(([k, val]) => `<tr><td>${k}</td><td>${val}</td></tr>`).join('');
+
+  lastSummary = `PA2 limiter threshold ${f(thrSafe)} dBFS (${f(thrDbu)} dBu at output), limited by ${binding}. ` +
+    `Over Easy ${$('oe').value}. Speaker ${Pc} W RMS / ${Pp} W peak at ${Z} Ω. Amp ${f(Pa, 0)} W at ${Z} Ω.` +
+    (venueOn ? ` Venue limit ${Lim} dBA at ${d} m.` : '');
+  $('summary').textContent = lastSummary;
+}
+
+$('copy').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(lastSummary);
+    $('cpMsg').textContent = 'Copied';
+  } catch (e) {
+    $('cpMsg').textContent = 'Copy blocked here. Select the text below instead.';
+  }
+  setTimeout(() => $('cpMsg').textContent = '', 2000);
+});
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
+calc();
+</script>
+</body>
+</html>
