@@ -50,35 +50,38 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
 <body>
 <main>
   <h1>Two-System Limiter Calculator</h1>
-  <p class="sub">Full-range stereo and bass systems, one combined venue limit, and DriveRack PA2 thresholds in dBFS.</p>
+  <p class="sub">Full-range stereo (olive or large top, one at a time) and bass, one combined venue limit, DriveRack PA2 thresholds in dBFS.</p>
 
   <div class="grid">
 
     <section class="card">
       <h2>Full range (stereo)</h2>
-      <div class="sh">Speaker (each)</div>
-      <label>Continuous (RMS) <span class="in"><input id="f_pc" type="number" value="300" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Peak <span class="in"><input id="f_pp" type="number" value="600" min="0" step="any"><span class="u">W</span></span></label>
+      <div class="sh">Cabinet</div>
+      <label>Cabinet <span class="in"><select id="f_spk"><option value="large" selected>Large top</option><option value="olive">Olive</option></select></span></label>
+      <label>Continuous (RMS) <span class="in"><input id="f_pc" type="number" value="700" min="0" step="any"><span class="u">W</span></span></label>
+      <label>Peak <span class="in"><input id="f_pp" type="number" value="1400" min="0" step="any"><span class="u">W</span></span></label>
       <label>Impedance <span class="in"><input id="f_z" type="number" value="8" min="0" step="any"><span class="u">Ω</span></span></label>
       <label>Sensitivity (1 W / 1 m) <span class="in"><input id="f_sens" type="number" value="98" step="any"><span class="u">dB</span></span></label>
-      <div class="sh">Amplifier</div>
-      <label>Power into 4 Ω <span class="in"><input id="f_p4" type="number" value="750" min="0" step="any"><span class="u">W</span></span></label>
+      <p class="hint">Peak values are summed driver ratings from memory. Impedance and sensitivity are placeholders.</p>
+      <div class="sh">Amplifier (2 × 750 W, 8 Ω, shared by both cabinets)</div>
       <label>Power into 8 Ω <span class="in"><input id="f_p8" type="number" value="750" min="0" step="any"><span class="u">W</span></span></label>
+      <label>Power into 4 Ω <span class="in"><input id="f_p4" type="number" value="750" min="0" step="any"><span class="u">W</span></span></label>
       <label>Voltage gain <span class="in"><input id="f_gain" type="number" value="26" step="any"><span class="u">dB</span></span></label>
       <label>Nominal input <span class="in"><select id="f_ref"><option value="1.12">1.12 V</option><option value="1.228" selected>+4 dBu (1.228 V)</option></select></span></label>
+      <p class="hint">The 4 Ω figure is a placeholder and is not used at 8 Ω.</p>
       <div class="sh">Venue</div>
       <label>Speakers at measurement point <span class="in"><input id="f_n" type="number" value="2" min="1" step="1"></span></label>
       <label>Measured at <span class="in"><input id="f_d" type="number" value="10" min="0" step="any"><span class="u">m</span></span></label>
-      <p class="hint">Full-range speaker ratings are placeholders. The 4 &Omega; amp figure copies 8 &Omega; and is not used at 8 &Omega;. Bass peak (1600 W) is assumed at twice continuous.</p>
     </section>
 
     <section class="card">
       <h2>Bass</h2>
       <div class="sh">Speaker (each)</div>
-      <label>Continuous (RMS) <span class="in"><input id="b_pc" type="number" value="500" min="0" step="any"><span class="u">W</span></span></label>
+      <label>Continuous (RMS) <span class="in"><input id="b_pc" type="number" value="800" min="0" step="any"><span class="u">W</span></span></label>
       <label>Peak <span class="in"><input id="b_pp" type="number" value="1600" min="0" step="any"><span class="u">W</span></span></label>
       <label>Impedance <span class="in"><input id="b_z" type="number" value="8" min="0" step="any"><span class="u">Ω</span></span></label>
       <label>Sensitivity (1 W / 1 m) <span class="in"><input id="b_sens" type="number" value="97" step="any"><span class="u">dB</span></span></label>
+      <p class="hint">Peak is a summed driver rating from memory. Impedance and sensitivity are placeholders.</p>
       <div class="sh">Amplifier</div>
       <label>Power into 4 Ω <span class="in"><input id="b_p4" type="number" value="1700" min="0" step="any"><span class="u">W</span></span></label>
       <label>Power into 8 Ω <span class="in"><input id="b_p8" type="number" value="1700" min="0" step="any"><span class="u">W</span></span></label>
@@ -87,7 +90,7 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
       <div class="sh">Wiring</div>
       <label>Mode <span class="in"><select id="b_wire"><option value="stereo">Stereo</option><option value="mono">Mono</option></select></span></label>
       <label>Speakers in parallel <span class="in"><input id="b_par" type="number" value="2" min="1" step="1" disabled><span class="u">pcs</span></span></label>
-      <p class="hint">Mono runs the bass speakers in parallel on one channel. The amp then drives half the impedance, and the venue count uses the parallel count.</p>
+      <p class="hint">Mono runs the bass speakers in parallel on one channel. The amp then drives half the impedance, and the venue count uses the parallel count. The 4 Ω figure above is a placeholder.</p>
       <div class="sh">Venue</div>
       <label>Speakers at measurement point <span class="in"><input id="b_n" type="number" value="2" min="1" step="1"></span></label>
       <label>Measured at <span class="in"><input id="b_d" type="number" value="10" min="0" step="any"><span class="u">m</span></span></label>
@@ -104,11 +107,11 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
     </section>
 
     <section class="card full">
-      <h2>Result</h2>
+      <h2>Result (selected cabinet)</h2>
       <div class="err" id="err"></div>
       <div class="two">
         <div>
-          <div class="tag">Full range</div>
+          <div class="tag" id="tag_f">Full range</div>
           <div class="big" id="thr_f">—</div>
           <div class="bar"><div class="marker" id="mk_f" style="left:0%"></div></div>
           <div class="scale"><span>-60</span><span>-40</span><span>-20</span><span>0 dBFS</span></div>
@@ -129,15 +132,22 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
       <div class="summary" id="summary"></div>
     </section>
 
+    <section class="card full">
+      <h2>Both full-range options (same amp and bass)</h2>
+      <table id="cmp"></table>
+      <p class="hint">Each column uses that cabinet's ratings with the shared amp, the bass set, and the venue settings above. The bass threshold is shown after any common reduction.</p>
+    </section>
+
   </div>
 
   <div class="note">
     <strong>How it works</strong>
     <ul>
-      <li>Each system's continuous and peak ceilings come from the speaker ratings and the amp's full-power voltage. The peak check uses the crest factor plus the PA2's roughly 3 dB overshoot.</li>
+      <li>Each system's continuous and peak ceilings come from its speaker ratings and the amp's full-power voltage. The peak check uses the crest factor plus the PA2's roughly 3 dB overshoot.</li>
       <li>The venue limit adds both systems' sound at the measurement point, power-summed. If the total is too high, both thresholds drop by the same amount until it fits.</li>
-      <li>The threshold is set where each amp reaches full power. The nominal input sets only the headroom display. It does not change the threshold.</li>
-      <li>Gain and power ratings should agree. The full-power input is the amp's output voltage divided by its gain. Check the amp's datasheet if the headroom looks wrong.</li>
+      <li>The threshold is set where each amp reaches full power. The nominal input sets only the headroom display.</li>
+      <li>With a 2× peak rating the RMS limit sits about one crest factor below the continuous limit. To reach the continuous rating, the peak rating needs to be roughly the crest factor plus 3 dB above continuous.</li>
+      <li>Summed driver ratings are optimistic for passive cabinets, since each driver's own limit at the crossover can be lower. Confirm the cabinet's peak rating if you can.</li>
       <li>The PA2 scale assumes 0 dBFS = +20 dBu at the output. The PA2 output tops out at that level, so amps that need more are flagged.</li>
       <li>The venue calculation assumes free-field distance falloff (6 dB per doubling). Indoors, reflections raise the level, so measure and adjust the correction.</li>
       <li>Mono sum level is not modelled. If you sum L and R into one bass feed without a pad, the feed is up to 6 dB hotter, so lower the bass threshold by that amount.</li>
@@ -150,6 +160,11 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
 const OVERSHOOT = 3;      // PA2 limiter transient overshoot, dB
 const REF_DBU = 0.775;    // dBu reference voltage
 const FS_AT_DBU = 20;     // PA2: 0 dBFS = +20 dBu at output
+
+const PRESETS = {
+  olive: { name: 'Olive', pc: 200, pp: 350 },
+  large: { name: 'Large top', pc: 700, pp: 1400 }
+};
 
 const $ = id => document.getElementById(id);
 const v = id => parseFloat($(id).value);
@@ -216,24 +231,8 @@ function solveX(systems, target) {
   return { x: lo, Ltot: total(lo), ok: true };
 }
 
-function setRes(p, o) {
-  $('thr_' + p).textContent = f(o.thr) + ' dBFS';
-  $('why_' + p).textContent = `Limited by ${o.binding}. Full power sits ${f(o.headroom)} dB above the nominal input.`;
-  $('mk_' + p).style.left = Math.max(0, Math.min(100, (o.thr + 60) / 60 * 100)) + '%';
-}
-
-function calc() {
-  const CF = v('cf'), M = v('margin'), Lim = v('lim');
-  const c = isFinite(v('corr')) ? v('corr') : 0;
-  const F = readSystem('f'), B = readSystem('b');
-  const sharedOk = isFinite(CF) && CF >= 0 && isFinite(M) && M >= 0;
-
-  if (!validSystem(F) || !validSystem(B) || !sharedOk) {
-    $('err').textContent = 'Check the inputs. Ratings, impedances, gains, distances and speaker counts must be positive. Crest factor and margin cannot be negative.';
-    return;
-  }
-  $('err').textContent = '';
-
+// Full calculation for one pair of systems
+function scenario(F, B, CF, M, Lim, c) {
   const sysF = sysCalc(F, CF, M), sysB = sysCalc(B, CF, M);
   const systems = [sysF, sysB];
   const venueOn = isFinite(Lim);
@@ -258,8 +257,32 @@ function calc() {
     else binding = 'peak rating (crest factor + overshoot)';
     return { s, raw, thr, Prms, Ppk, SPL1m, venueSys, headroom, thrVsNom, binding };
   });
+  return { out, sol, x, venueOn, venueReady, Lim, c };
+}
 
+function setRes(p, o) {
+  $('thr_' + p).textContent = f(o.thr) + ' dBFS';
+  $('why_' + p).textContent = `Limited by ${o.binding}. Full power sits ${f(o.headroom)} dB above the nominal input.`;
+  $('mk_' + p).style.left = Math.max(0, Math.min(100, (o.thr + 60) / 60 * 100)) + '%';
+}
+
+function calc() {
+  const CF = v('cf'), M = v('margin'), Lim = v('lim');
+  const c = isFinite(v('corr')) ? v('corr') : 0;
+  const F = readSystem('f'), B = readSystem('b');
+  const sharedOk = isFinite(CF) && CF >= 0 && isFinite(M) && M >= 0;
+
+  if (!validSystem(F) || !validSystem(B) || !sharedOk) {
+    $('err').textContent = 'Check the inputs. Ratings, impedances, gains, distances and speaker counts must be positive. Crest factor and margin cannot be negative.';
+    return;
+  }
+  $('err').textContent = '';
+
+  const sc = scenario(F, B, CF, M, Lim, c);
+  const { out, sol, x, venueOn, venueReady } = sc;
   const [fo, bo] = out;
+  const cabName = PRESETS[$('f_spk').value] ? PRESETS[$('f_spk').value].name : 'Full range';
+  $('tag_f').textContent = 'Full range: ' + cabName;
   setRes('f', fo);
   setRes('b', bo);
 
@@ -299,10 +322,34 @@ function calc() {
     row('Approx. SPL at 1 m', o => isFinite(o.SPL1m) ? `${f(o.SPL1m)} dB` : 'enter sensitivity')
   ].join('');
 
-  lastSummary = `PA2 limiter (dBFS): full range ${f(fo.thr)}, bass ${f(bo.thr)}` +
+  // Both full-range cabinets side by side, same amp and bass
+  const cols = Object.keys(PRESETS).map(k => {
+    const Fk = readSystem('f');
+    Fk.Pc = PRESETS[k].pc;
+    Fk.Pp = PRESETS[k].pp;
+    if (!validSystem(Fk)) return null;
+    return { name: PRESETS[k].name, r: scenario(Fk, B, CF, M, Lim, c) };
+  }).filter(Boolean);
+  const crow = (label, fn) => `<tr><td>${label}</td>${cols.map(col => `<td>${fn(col.r)}</td>`).join('')}</tr>`;
+  $('cmp').innerHTML = `<tr><th></th>${cols.map(col => `<th>${col.name}</th>`).join('')}</tr>` + [
+    crow('Full-range threshold', r => `${f(r.out[0].thr)} dBFS`),
+    crow('Full-range limited by', r => r.out[0].binding),
+    crow('Bass threshold', r => `${f(r.out[1].thr)} dBFS`),
+    crow('Common venue reduction', r => `${f(r.x)} dB`),
+    crow('Combined at venue', r => r.venueReady ? `${f(r.sol.Ltot + c)} dBA` : '—')
+  ].join('');
+
+  lastSummary = `PA2 limiter (dBFS), ${cabName} selected: full range ${f(fo.thr)}, bass ${f(bo.thr)}` +
     (venueReady ? `. Combined venue ${f(sol.Ltot + c)} dBA vs ${f(Lim, 0)} dBA limit (common reduction ${f(x)} dB)` : '') +
     `. Crest ${CF} dB, margin ${M} dB, Over Easy ${$('oe').value}. Bass wiring: ${B.isMono ? 'mono, ' + B.npar + ' in parallel' : 'stereo'}.`;
   $('summary').textContent = lastSummary;
+}
+
+function applyPreset() {
+  const p = PRESETS[$('f_spk').value];
+  if (!p) return;
+  $('f_pc').value = p.pc;
+  $('f_pp').value = p.pp;
 }
 
 function syncWiring() {
@@ -321,7 +368,12 @@ $('copy').addEventListener('click', async () => {
   setTimeout(() => $('cpMsg').textContent = '', 2000);
 });
 
-document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', () => { syncWiring(); calc(); }));
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', () => {
+  if (el.id === 'f_spk') applyPreset();
+  syncWiring();
+  calc();
+}));
+applyPreset();
 syncWiring();
 calc();
 </script>
