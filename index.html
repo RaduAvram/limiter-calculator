@@ -49,7 +49,7 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
 </head>
 <body>
 <main>
-  <h1>Two-System Limiter Calculator</h1>
+  <h1>Two-System Limiter Calculator (customized)</h1>
   <p class="sub">Full-range stereo (olive or large top, one at a time) and bass, one combined venue limit, DriveRack PA2 thresholds in dBFS.</p>
 
   <div class="grid">
@@ -62,7 +62,7 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
       <label>Peak <span class="in"><input id="f_pp" type="number" value="1360" min="0" step="any"><span class="u">W</span></span></label>
       <label>Impedance <span class="in"><input id="f_z" type="number" value="8" min="0" step="any"><span class="u">Ω</span></span></label>
       <label>Sensitivity (1 W / 1 m) <span class="in"><input id="f_sens" type="number" value="97" step="any"><span class="u">dB</span></span></label>
-      <p class="hint">Large top is JBL 2226H + Beyma CP650Ti from your PDF (680 / 1360 W). Olive is not in the PDF; its sensitivity is a placeholder.</p>
+      <p class="hint">Large top: JBL 2226H + Beyma CP650Ti (680 / 1360 W, 97 dB, PDF). Olive: Beyma 10CMV2 woofer (95 dB) + SMC-8060 tweeter (107 dB, 12 dB pad), so the cabinet is set to 95 dB. Olive ratings are the sum of both drivers (300 / 600 W).</p>
       <div class="sh">Amplifier (2 × 750 W, 8 Ω, shared by both cabinets)</div>
       <label>Power into 8 Ω <span class="in"><input id="f_p8" type="number" value="750" min="0" step="any"><span class="u">W</span></span></label>
       <label>Power into 4 Ω <span class="in"><input id="f_p4" type="number" value="1200" min="0" step="any"><span class="u">W</span></span></label>
@@ -154,6 +154,18 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
       <li>Over Easy changes the knee shape, not this math. Use the 3 dB overshoot margin when you run it hard.</li>
     </ul>
   </div>
+
+  <section class="card full">
+    <h2>Notes and sources</h2>
+    <ul class="hint" style="margin:0;padding-left:18px;line-height:1.6">
+      <li>Olive cabinet: Beyma 10CMV2 woofer, 8 &Omega;, 250 W AES / 500 W program, 95 dB 1 W/1 m. Beyma SMC-8060 tweeter, 8 &Omega;, 107 dB 1 W/1 m, reduced by a 12 dB pad, which brings it close to the woofer's level. The cabinet uses 95 dB. The SMC-8060 without /N is taken to have the same power rating as the /N.</li>
+      <li>Olive power is the sum of the two drivers' ratings: 300 W continuous (250 + 50), 600 W peak (500 + 100).</li>
+      <li>Large top: JBL 2226H woofer (97 dB) plus Beyma CP650Ti (110 dB). The sensitivity uses the JBL figure only, so the real cabinet level is probably higher.</li>
+      <li>Bass: Dynacord SRC 400 LO, 800 W rated, 1600 W program, 4 &Omega;, 100 dB. The 1600 W is a program rating, so the peak check is conservative.</li>
+      <li>Amp: Outline T6.5, 1700 W at 4 &Omega;, 950 W at 8 &Omega;. Mono bass (2 &Omega; load) currently uses the 4 &Omega; figure. The PDF lists a higher 2 &Omega; rating (3000 W), which is not entered yet.</li>
+      <li>Venue dBA limit, distances, speaker counts and the dBA correction are placeholders. Enter your own values.</li>
+    </ul>
+  </section>
 </main>
 
 <script>
@@ -162,8 +174,8 @@ const REF_DBU = 0.775;    // dBu reference voltage
 const FS_AT_DBU = 20;     // PA2: 0 dBFS = +20 dBu at output
 
 const PRESETS = {
-  olive: { name: 'Olive', pc: 200, pp: 350 },
-  large: { name: 'Large top', pc: 680, pp: 1360 }
+  olive: { name: 'Olive', pc: 300, pp: 600, sens: 95 },
+  large: { name: 'Large top', pc: 680, pp: 1360, sens: 97 }
 };
 
 const $ = id => document.getElementById(id);
@@ -327,6 +339,7 @@ function calc() {
     const Fk = readSystem('f');
     Fk.Pc = PRESETS[k].pc;
     Fk.Pp = PRESETS[k].pp;
+    Fk.S = PRESETS[k].sens;
     if (!validSystem(Fk)) return null;
     return { name: PRESETS[k].name, r: scenario(Fk, B, CF, M, Lim, c) };
   }).filter(Boolean);
@@ -350,6 +363,7 @@ function applyPreset() {
   if (!p) return;
   $('f_pc').value = p.pc;
   $('f_pp').value = p.pp;
+  $('f_sens').value = p.sens;
 }
 
 function syncWiring() {
