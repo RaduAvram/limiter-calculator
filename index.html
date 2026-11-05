@@ -67,6 +67,8 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
       <label>Power into 8 Ω <span class="in"><input id="f_p8" type="number" value="750" min="0" step="any"><span class="u">W</span></span></label>
       <label>Power into 4 Ω <span class="in"><input id="f_p4" type="number" value="1200" min="0" step="any"><span class="u">W</span></span></label>
       <label>Voltage gain <span class="in"><input id="f_gain" type="number" value="26" step="any"><span class="u">dB</span></span></label>
+      <label>Pot attenuation <span class="in"><input id="f_att" type="number" value="0" min="0" step="any"><span class="u">dB</span></span></label>
+      <p class="hint">0 dB = pot fully up. Turning the pot down by X dB lowers the amp's effective gain by X dB.</p>
       <label>Nominal input <span class="in"><select id="f_ref"><option value="1.12">1.12 V</option><option value="1.228" selected>+4 dBu (1.228 V)</option></select></span></label>
       <p class="hint">The 4 Ω figure is a placeholder and is not used at 8 Ω.</p>
       <div class="sh">Venue</div>
@@ -86,6 +88,8 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
       <label>Power into 4 Ω <span class="in"><input id="b_p4" type="number" value="1700" min="0" step="any"><span class="u">W</span></span></label>
       <label>Power into 8 Ω <span class="in"><input id="b_p8" type="number" value="950" min="0" step="any"><span class="u">W</span></span></label>
       <label>Voltage gain <span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class="u">dB</span></span></label>
+      <label>Pot attenuation <span class="in"><input id="b_att" type="number" value="0" min="0" step="any"><span class="u">dB</span></span></label>
+      <p class="hint">0 dB = pot fully up. Turning the pot down by X dB lowers the amp's effective gain by X dB.</p>
       <label>Nominal input <span class="in"><select id="b_ref"><option value="1.12" selected>1.12 V</option><option value="1.228">+4 dBu (1.228 V)</option></select></span></label>
       <div class="sh">Wiring</div>
       <label>Mode <span class="in"><select id="b_wire"><option value="stereo">Stereo</option><option value="mono">Mono</option></select></span></label>
@@ -195,7 +199,7 @@ function readSystem(p) {
     Pc: v(p + '_pc'), Pp: v(p + '_pp'), Z,
     S: v(p + '_sens'),
     P4: v(p + '_p4'), P8: v(p + '_p8'),
-    gainDb: v(p + '_gain'),
+    gainDb: v(p + '_gain') - v(p + '_att'),   // pot attenuation reduces effective gain
     Vnom: parseFloat($(p + '_ref').value),
     Zeff: Z / npar,
     Nv: isMono ? npar : v(p + '_n'),
