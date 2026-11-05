@@ -58,14 +58,14 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
       <h2>Full range (stereo)</h2>
       <div class="sh">Cabinet</div>
       <label>Cabinet <span class="in"><select id="f_spk"><option value="large" selected>Large top</option><option value="olive">Olive</option></select></span></label>
-      <label>Continuous (RMS) <span class="in"><input id="f_pc" type="number" value="700" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Peak <span class="in"><input id="f_pp" type="number" value="1400" min="0" step="any"><span class="u">W</span></span></label>
+      <label>Continuous (RMS) <span class="in"><input id="f_pc" type="number" value="680" min="0" step="any"><span class="u">W</span></span></label>
+      <label>Peak <span class="in"><input id="f_pp" type="number" value="1360" min="0" step="any"><span class="u">W</span></span></label>
       <label>Impedance <span class="in"><input id="f_z" type="number" value="8" min="0" step="any"><span class="u">Ω</span></span></label>
-      <label>Sensitivity (1 W / 1 m) <span class="in"><input id="f_sens" type="number" value="98" step="any"><span class="u">dB</span></span></label>
-      <p class="hint">Peak values are summed driver ratings from memory. Impedance and sensitivity are placeholders.</p>
+      <label>Sensitivity (1 W / 1 m) <span class="in"><input id="f_sens" type="number" value="97" step="any"><span class="u">dB</span></span></label>
+      <p class="hint">Large top is JBL 2226H + Beyma CP650Ti from your PDF (680 / 1360 W). Olive is not in the PDF; its sensitivity is a placeholder.</p>
       <div class="sh">Amplifier (2 × 750 W, 8 Ω, shared by both cabinets)</div>
       <label>Power into 8 Ω <span class="in"><input id="f_p8" type="number" value="750" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Power into 4 Ω <span class="in"><input id="f_p4" type="number" value="750" min="0" step="any"><span class="u">W</span></span></label>
+      <label>Power into 4 Ω <span class="in"><input id="f_p4" type="number" value="1200" min="0" step="any"><span class="u">W</span></span></label>
       <label>Voltage gain <span class="in"><input id="f_gain" type="number" value="26" step="any"><span class="u">dB</span></span></label>
       <label>Nominal input <span class="in"><select id="f_ref"><option value="1.12">1.12 V</option><option value="1.228" selected>+4 dBu (1.228 V)</option></select></span></label>
       <p class="hint">The 4 Ω figure is a placeholder and is not used at 8 Ω.</p>
@@ -79,12 +79,12 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
       <div class="sh">Speaker (each)</div>
       <label>Continuous (RMS) <span class="in"><input id="b_pc" type="number" value="800" min="0" step="any"><span class="u">W</span></span></label>
       <label>Peak <span class="in"><input id="b_pp" type="number" value="1600" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Impedance <span class="in"><input id="b_z" type="number" value="8" min="0" step="any"><span class="u">Ω</span></span></label>
-      <label>Sensitivity (1 W / 1 m) <span class="in"><input id="b_sens" type="number" value="97" step="any"><span class="u">dB</span></span></label>
-      <p class="hint">Peak is a summed driver rating from memory. Impedance and sensitivity are placeholders.</p>
+      <label>Impedance <span class="in"><input id="b_z" type="number" value="4" min="0" step="any"><span class="u">Ω</span></span></label>
+      <label>Sensitivity (1 W / 1 m) <span class="in"><input id="b_sens" type="number" value="100" step="any"><span class="u">dB</span></span></label>
+      <p class="hint">Dynacord SRC 400 LO from your PDF: 800 W rated, 1600 W program, 4 &Omega;, 100 dB.</p>
       <div class="sh">Amplifier</div>
       <label>Power into 4 Ω <span class="in"><input id="b_p4" type="number" value="1700" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Power into 8 Ω <span class="in"><input id="b_p8" type="number" value="1700" min="0" step="any"><span class="u">W</span></span></label>
+      <label>Power into 8 Ω <span class="in"><input id="b_p8" type="number" value="950" min="0" step="any"><span class="u">W</span></span></label>
       <label>Voltage gain <span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class="u">dB</span></span></label>
       <label>Nominal input <span class="in"><select id="b_ref"><option value="1.12" selected>1.12 V</option><option value="1.228">+4 dBu (1.228 V)</option></select></span></label>
       <div class="sh">Wiring</div>
@@ -163,7 +163,7 @@ const FS_AT_DBU = 20;     // PA2: 0 dBFS = +20 dBu at output
 
 const PRESETS = {
   olive: { name: 'Olive', pc: 200, pp: 350 },
-  large: { name: 'Large top', pc: 700, pp: 1400 }
+  large: { name: 'Large top', pc: 680, pp: 1360 }
 };
 
 const $ = id => document.getElementById(id);
