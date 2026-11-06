@@ -15,6 +15,7 @@ h1{font-size:21px;margin:0}
 .sub{color:var(--mut);margin:2px 0 0;font-size:13px}
 .hero{position:sticky;top:0;z-index:5;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:14px;box-shadow:0 4px 16px rgba(0,0,0,.06);display:grid;grid-template-columns:1fr 1fr auto;gap:18px;align-items:center}
 @media(max-width:720px){.hero{grid-template-columns:1fr 1fr;position:static}.hero .act{grid-column:1/-1}}
+.dbu{font-size:15px;font-weight:600;color:var(--mut);margin-left:6px}
 .tag{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);font-weight:600}
 .big{font-size:34px;font-weight:750;font-variant-numeric:tabular-nums;line-height:1.1;margin-top:2px}
 #thr_f{color:var(--acc)}#thr_b{color:var(--bass)}
@@ -92,7 +93,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
   <div class="sh">Speaker (each)</div>
   <label><span>Continuous</span><span class="in"><input id="f_pc" type="number" value="680" step="any"><span class=u>W</span></span></label><label><span>Peak</span><span class="in"><input id="f_pp" type="number" value="1360" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="f_z" type="number" value="8" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="f_sens" type="number" value="97" step="any"><span class=u>dB</span></span></label>
   <div class="sh">Amplifier</div>
-  <label><span>Power into 8 Ω</span><span class="in"><input id="f_p8" type="number" value="750" step="any"><span class=u>W</span></span></label><label><span>Power into 4 Ω</span><span class="in"><input id="f_p4" type="number" value="1200" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="f_gain" type="number" value="26" step="any"><span class=u>dB</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="f_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
+  <label><span>Power into 8 Ω</span><span class="in"><input id="f_p8" type="number" value="750" step="any"><span class=u>W</span></span></label><label><span>Power into 4 Ω</span><span class="in"><input id="f_p4" type="number" value="1200" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="f_p2" type="number" value="1500" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="f_gain" type="number" value="26" step="any"><span class=u>dB</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="f_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
   <label><span>Nominal input</span><span class="in"><select id="f_ref"><option value="1.12">1.12 V</option><option value="1.228" selected>+4 dBu (1.228 V)</option></select></span></label>
   <p class="hint">Pot at 0 dB = fully up. Each dB down raises the threshold by 1 dB.</p>
   <div class="sh">At the venue</div>
@@ -104,7 +105,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
   <div class="sh">Speaker (each)</div>
   <label><span>Continuous</span><span class="in"><input id="b_pc" type="number" value="800" step="any"><span class=u>W</span></span></label><label><span>Peak</span><span class="in"><input id="b_pp" type="number" value="1600" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="b_z" type="number" value="4" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="b_sens" type="number" value="100" step="any"><span class=u>dB</span></span></label>
   <div class="sh">Amplifier</div>
-  <label><span>Power into 4 Ω</span><span class="in"><input id="b_p4" type="number" value="1700" step="any"><span class=u>W</span></span></label><label><span>Power into 8 Ω</span><span class="in"><input id="b_p8" type="number" value="950" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class=u>dB</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="b_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
+  <label><span>Power into 4 Ω</span><span class="in"><input id="b_p4" type="number" value="1700" step="any"><span class=u>W</span></span></label><label><span>Power into 8 Ω</span><span class="in"><input id="b_p8" type="number" value="950" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="b_p2" type="number" value="3000" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class=u>dB</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="b_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
   <label><span>Nominal input</span><span class="in"><select id="b_ref"><option value="1.12" selected>1.12 V</option><option value="1.228">+4 dBu (1.228 V)</option></select></span></label>
   <div class="sh">Wiring</div>
   <label><span>Mode</span><span class="in"><select id="b_wire"><option value="stereo">Stereo</option><option value="mono">Mono (parallel)</option></select></span></label>
@@ -116,6 +117,8 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
 <section class="card">
   <h2><span class="dot s"></span>Limiter and venue</h2>
   <div class="sh">Program</div>
+  <label><span>Limit basis</span><span class="in"><select id="basis"><option value="cont" selected>Continuous rating (PDF method)</option><option value="peak">Continuous + peak check</option></select></span></label>
+  <p class="hint">PDF method: threshold where each speaker reaches its continuous rating. Peak check also keeps program peaks (crest factor + 3 dB overshoot) under the peak rating and amp clip, which is much lower.</p>
   <label><span>Crest factor</span><span class="in"><input id="cf" type="number" value="12" step="any" min="0"><span class=u>dB</span></span></label><label><span>Safety margin</span><span class="in"><input id="margin" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
   <label><span>Over Easy (notes)</span><span class="in"><select id="oe"><option>OFF</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></span></label>
   <div class="sh">Venue</div>
@@ -146,7 +149,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
       <li>Olive power is the sum of the two drivers' ratings: 300 W continuous (250 + 50), 600 W peak (500 + 100).</li>
       <li>Large top: JBL 2226H woofer (97 dB) plus Beyma CP650Ti (110 dB). The sensitivity uses the JBL figure only, so the real cabinet level is probably higher.</li>
       <li>Bass: Dynacord SRC 400 LO, 800 W rated, 1600 W program, 4 &Omega;, 100 dB. The 1600 W is a program rating, so the peak check is conservative.</li>
-      <li>Amp: Outline T6.5, 1700 W at 4 &Omega;, 950 W at 8 &Omega;. Mono bass (2 &Omega; load) currently uses the 4 &Omega; figure. The PDF lists a higher 2 &Omega; rating (3000 W), which is not entered yet.</li>
+      <li>Bass amp: Outline T6.5, 950 W / 1700 W / 3000 W at 8 / 4 / 2 &Omega;, 38.2 dB gain, 1.12 V sensitivity. Full-range amp: Dynacord L2400, 2 &times; 750 / 1200 / 1500 W at 8 / 4 / 2 &Omega;, 26 dB constant-gain mode.</li><li>PDF check values (continuous basis, no venue limit, pots at 0 dB): sub &minus;0.9 dBu, top +13.0 dBu with the JBL's 600 W alone (680 W summed gives +13.5 dBu). With the T6.5 pot at &minus;18 dB, the sub becomes +17.1 dBu. PA2: 0 dBFS = +20 dBu max output.</li>
       <li>Venue dBA limit, distances, speaker counts and the dBA correction are placeholders. Enter your own values.</li>
     </ul></details>
 </main>
@@ -177,7 +180,7 @@ function readSystem(p) {
     isMono, npar,
     Pc: v(p + '_pc'), Pp: v(p + '_pp'), Z,
     S: v(p + '_sens'),
-    P4: v(p + '_p4'), P8: v(p + '_p8'),
+    P2: v(p + '_p2'), P4: v(p + '_p4'), P8: v(p + '_p8'),
     gainDb: v(p + '_gain') - v(p + '_att'),   // pot attenuation reduces effective gain
     Vnom: parseFloat($(p + '_ref').value),
     Zeff: Z / npar,
@@ -192,9 +195,10 @@ function validSystem(s) {
 }
 
 // Amp output and speaker ceilings for one system
-function sysCalc(s, CF, M) {
+function sysCalc(s, CF, M, basis) {
   const Zl = s.Zeff;
-  const Pamp = Zl <= 4 ? s.P4 : Zl >= 8 ? s.P8 : s.P4 + (s.P8 - s.P4) * (Zl - 4) / 4;
+  const P2 = isFinite(s.P2) && s.P2 > 0 ? s.P2 : s.P4;
+  const Pamp = Zl <= 2 ? P2 : Zl < 4 ? P2 + (s.P4 - P2) * (Zl - 2) / 2 : Zl >= 8 ? s.P8 : s.P4 + (s.P8 - s.P4) * (Zl - 4) / 4;
   const Va = Math.sqrt(Pamp * Zl);              // amp full-power RMS volts into its load
   const Pspk = Va * Va / s.Z;                   // power one speaker gets at that voltage
   const Vc = Math.sqrt(s.Pc * s.Z);             // speaker continuous RMS volts
@@ -204,7 +208,7 @@ function sysCalc(s, CF, M) {
   const Tr = Lc - M;
   const Tp = Lp - CF - OVERSHOOT - M;
   const clipDbu = dBu(Va / Math.pow(10, s.gainDb / 20));   // PA2 output at which the amp reaches full power
-  return Object.assign({}, s, { Pamp, Va, Pspk, Vc, Vp, Tr, Tp, T0: Math.min(Tr, Tp), clipDbu });
+  return Object.assign({}, s, { Pamp, Va, Pspk, Vc, Vp, Tr, Tp, T0: basis === 'peak' ? Math.min(Tr, Tp) : Tr, basis, clipDbu });
 }
 
 // Unweighted SPL at the venue from one system, when its threshold is lowered by x dB
@@ -228,7 +232,8 @@ function solveX(systems, target) {
 
 // Full calculation for one pair of systems
 function scenario(F, B, CF, M, Lim, c) {
-  const sysF = sysCalc(F, CF, M), sysB = sysCalc(B, CF, M);
+  const basis = $('basis').value;
+  const sysF = sysCalc(F, CF, M, basis), sysB = sysCalc(B, CF, M, basis);
   const systems = [sysF, sysB];
   const venueOn = isFinite(Lim);
   const venueReady = venueOn && isFinite(F.S) && isFinite(B.S);
@@ -248,7 +253,7 @@ function scenario(F, B, CF, M, Lim, c) {
     let binding;
     if (raw > 0) binding = 'PA2 full scale';
     else if (venueReady && x < 0) binding = 'combined venue limit';
-    else if (s.Tr <= s.Tp) binding = 'continuous (RMS) rating';
+    else if (s.basis !== 'peak' || s.Tr <= s.Tp) binding = 'continuous (RMS) rating';
     else binding = 'peak rating (crest factor + overshoot)';
     return { s, raw, thr, Prms, Ppk, SPL1m, venueSys, headroom, thrVsNom, binding };
   });
@@ -256,7 +261,7 @@ function scenario(F, B, CF, M, Lim, c) {
 }
 
 function setRes(p, o) {
-  $('thr_' + p).textContent = f(o.thr) + ' dBFS';
+  $('thr_' + p).innerHTML = f(o.thr) + ' dBFS <span class="dbu">' + f(o.thr + FS_AT_DBU) + ' dBu</span>';
   $('why_' + p).textContent = `Limited by ${o.binding}. Full power sits ${f(o.headroom)} dB above the nominal input.`;
   $('mk_' + p).style.left = Math.max(0, Math.min(100, (o.thr + 60) / 60 * 100)) + '%';
 }
@@ -335,7 +340,7 @@ function calc() {
     crow('Combined at venue', r => r.venueReady ? `${f(r.sol.Ltot + c)} dBA` : '—')
   ].join('');
 
-  lastSummary = `PA2 limiter (dBFS), ${cabName} selected: full range ${f(fo.thr)}, bass ${f(bo.thr)}` +
+  lastSummary = `PA2 limiter, ${cabName} selected: full range ${f(fo.thr)} dBFS (${f(fo.thr + FS_AT_DBU)} dBu), bass ${f(bo.thr)} dBFS (${f(bo.thr + FS_AT_DBU)} dBu), basis ${$('basis').value === 'peak' ? 'continuous + peak' : 'continuous'}` +
     (venueReady ? `. Combined venue ${f(sol.Ltot + c)} dBA vs ${f(Lim, 0)} dBA limit (common reduction ${f(x)} dB)` : '') +
     `. Crest ${CF} dB, margin ${M} dB, Over Easy ${$('oe').value}. Bass wiring: ${B.isMono ? 'mono, ' + B.npar + ' in parallel' : 'stereo'}.`;
   $('summary').textContent = lastSummary;
