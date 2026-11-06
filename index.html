@@ -43,6 +43,7 @@ input,select{width:120px;padding:7px 9px;border:1px solid var(--line);border-rad
 select{text-align:left;width:152px}
 input:focus,select:focus{outline:2px solid var(--acc);outline-offset:-1px;background:var(--card)}
 input:disabled,select:disabled{opacity:.4}
+input[readonly]{background:transparent;border-style:dashed;color:var(--mut)}
 .seg{display:flex;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:3px;gap:3px;margin:8px 0}
 .seg button{flex:1;border:0;background:transparent;padding:7px;border-radius:7px;font-weight:600;color:var(--mut)}
 .seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
@@ -93,9 +94,8 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
   <div class="sh">Speaker (each)</div>
   <label><span>Continuous</span><span class="in"><input id="f_pc" type="number" value="680" step="any"><span class=u>W</span></span></label><label><span>Program (peak)</span><span class="in"><input id="f_pp" type="number" value="1360" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="f_z" type="number" value="8" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="f_sens" type="number" value="97" step="any"><span class=u>dB</span></span></label>
   <div class="sh">Amplifier</div>
-  <label><span>Power into 8 Ω</span><span class="in"><input id="f_p8" type="number" value="750" step="any"><span class=u>W</span></span></label><label><span>Power into 4 Ω</span><span class="in"><input id="f_p4" type="number" value="1200" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="f_p2" type="number" value="1500" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="f_gain" type="number" value="26" step="any"><span class=u>dB</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="f_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
+  <label><span>Power into 8 Ω</span><span class="in"><input id="f_p8" type="number" value="750" step="any"><span class=u>W</span></span></label><label><span>Power into 4 Ω</span><span class="in"><input id="f_p4" type="number" value="1200" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="f_p2" type="number" value="1500" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="f_gain" type="number" value="26" step="any"><span class=u>dB</span></span></label><label><span>Pot scale</span><span class="in"><select id="f_potmode"><option value="knob">Knob 0&ndash;10</option><option value="db" selected>Marked in dB</option></select></span></label><label id="f_knobrow"><span>Knob position</span><span class="in"><input id="f_knob" type="number" value="10" min="0" max="10" step="0.5"><span class=u>/10</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="f_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label><p class="hint" id="f_pothint"></p>
   <label><span>Nominal input</span><span class="in"><select id="f_ref"><option value="1.12">1.12 V</option><option value="1.228" selected>+4 dBu (1.228 V)</option></select></span></label>
-  <p class="hint">Pot at 0 dB = fully up. Each dB down raises the threshold by 1 dB.</p>
   <div class="sh">At the venue</div>
   <label><span>Speakers counted</span><span class="in"><input id="f_n" type="number" value="2" step="any" min="1" step="1"><span class="u"></span></span></label><label><span>Distance</span><span class="in"><input id="f_d" type="number" value="10" step="any"><span class=u>m</span></span></label>
 </section>
@@ -105,7 +105,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
   <div class="sh">Speaker (each)</div>
   <label><span>Continuous</span><span class="in"><input id="b_pc" type="number" value="800" step="any"><span class=u>W</span></span></label><label><span>Program (peak)</span><span class="in"><input id="b_pp" type="number" value="1600" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="b_z" type="number" value="4" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="b_sens" type="number" value="100" step="any"><span class=u>dB</span></span></label>
   <div class="sh">Amplifier</div>
-  <label><span>Power into 4 Ω</span><span class="in"><input id="b_p4" type="number" value="1700" step="any"><span class=u>W</span></span></label><label><span>Power into 8 Ω</span><span class="in"><input id="b_p8" type="number" value="950" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="b_p2" type="number" value="3000" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class=u>dB</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="b_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
+  <label><span>Power into 4 Ω</span><span class="in"><input id="b_p4" type="number" value="1700" step="any"><span class=u>W</span></span></label><label><span>Power into 8 Ω</span><span class="in"><input id="b_p8" type="number" value="950" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="b_p2" type="number" value="3000" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class=u>dB</span></span></label><label><span>Pot scale</span><span class="in"><select id="b_potmode"><option value="knob" selected>Knob 0&ndash;10</option><option value="db">Marked in dB</option></select></span></label><label id="b_knobrow"><span>Knob position</span><span class="in"><input id="b_knob" type="number" value="10" min="0" max="10" step="0.5"><span class=u>/10</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="b_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label><p class="hint" id="b_pothint"></p>
   <label><span>Nominal input</span><span class="in"><select id="b_ref"><option value="1.12" selected>1.12 V</option><option value="1.228">+4 dBu (1.228 V)</option></select></span></label>
   <div class="sh">Wiring</div>
   <label><span>Mode</span><span class="in"><select id="b_wire"><option value="stereo">Stereo</option><option value="mono">Mono (parallel)</option></select></span></label>
@@ -139,7 +139,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
 <li><b>How the limiter acts.</b> PeakPlus uses RMS detection at a fixed &infin;:1 ratio, so the sustained level never goes above the threshold. Transients are soft-clipped but can still overshoot by up to 3 dB.</li>
 <li><b>dbx's own method.</b> Set the threshold just below the level that clips the amp: amp clip in dBu minus 20. Lower it 3 dB more "to be absolutely safe" against overshoot. Example from the manual: amp clips at +6 dBu &rarr; &minus;14 dBFS, or &minus;17 dBFS with the cushion.</li>
 <li><b>What this calculator adds.</b> Three ceilings, and the lowest wins: (1) amp clip, minus the cushion; (2) the speaker's continuous rating at the sustained level; (3) the speaker's program rating during 3 dB overshoot transients. A common reduction is then applied if the venue limit needs it.</li>
-<li>Amp pot attenuation raises the PA2 level needed for full power, which raises all three ceilings by the same amount.</li>
+<li>Amp pot attenuation raises the PA2 level needed for full power, which raises all three ceilings by the same amount. A 0&ndash;10 knob is converted with an assumed audio taper (knob 10 = 0 dB, 5 &asymp; &minus;20 dB, 0 = muted), which is only an estimate. <b>To measure it:</b> disconnect the speakers, feed the amp a steady sine tone (around 60 Hz for the sub) and read the output with a multimeter on AC volts, first at knob 10, then at your setting. Attenuation = 20 &times; log10(V10 &divide; Vsetting). Example: 40 V at 10 and 5 V at your setting is 18 dB.</li>
 <li>Program crest factor doesn't enter the threshold. The RMS detector holds the sustained level, and the soft clipper handles peaks. Sustained power is shown as a worst case (sine or heavily compressed program). Normal music averages less.</li>
 <li><b>Final check (manual p. 21).</b> Disconnect the speakers, play pink noise, raise each amp until its clip LED just lights, then lower the PA2 threshold until it stops. Use the calculator's value as the starting point and the clip LEDs as the final word.</li>
 <li>The venue level assumes free-field falloff (6 dB per doubling). Indoors it will be higher, so measure and adjust the dBA correction.</li>
@@ -299,6 +299,10 @@ function calc() {
     if (s.Pp < s.Pc) warns.push(`${s.name}: the program rating is below the continuous rating. Check the spec sheet.`);
     if (o.thr < -60) warns.push(`${s.name}: the threshold is below the PA2 floor of -60 dBFS.`);
   }
+  for (const p of ['f', 'b']) {
+    if ($(p + '_potmode').value === 'knob' && v(p + '_knob') < 10)
+      warns.push(`${p === 'f' ? 'Full range' : 'Bass'} amp: the ${f(v(p + '_att'))} dB pot attenuation is estimated from knob position ${f(v(p + '_knob'))}. If the real attenuation is smaller, the amp is louder than assumed and the threshold is too high. Measure it before relying on this number.`);
+  }
   if (venueOn && !venueReady) warns.push('Enter the sensitivity for both systems to apply the venue dBA limit.');
   if (venueReady && !sol.ok) warns.push('The venue limit cannot be met even with an 80 dB reduction. Check the distances and speaker counts.');
   $('warn').innerHTML = warns.map(w => '<div>⚠ ' + w + '</div>').join('');
@@ -361,6 +365,37 @@ function applyPreset() {
   $('f_sens').value = p.sens;
 }
 
+
+// Knob 0-10 to attenuation, assuming a standard audio (log) taper:
+// 10% of the signal at mid-rotation, linear segments either side. Estimate only.
+function knobToDb(k) {
+  const r = Math.max(0, Math.min(10, k)) / 10;
+  const g = r <= 0.5 ? 0.2 * r : 0.1 + 1.8 * (r - 0.5);
+  return g <= 0 ? 60 : Math.min(60, -db(g));
+}
+function dbToKnob(a) {
+  const g = Math.pow(10, -a / 20);
+  const r = g >= 0.1 ? 0.5 + (g - 0.1) / 1.8 : g / 0.2;
+  return r * 10;
+}
+function syncPots() {
+  for (const p of ['f', 'b']) {
+    const knob = $(p + '_potmode').value === 'knob';
+    $(p + '_knobrow').style.display = knob ? '' : 'none';
+    $(p + '_att').readOnly = knob;
+    if (knob) {
+      const k = v(p + '_knob');
+      const a = isFinite(k) ? knobToDb(k) : 0;
+      $(p + '_att').value = (Math.round(a * 10) / 10).toString();
+      $(p + '_pothint').textContent = k >= 10
+        ? 'Knob at 10 = 0 dB (full gain). Lower positions are estimated with a standard audio taper, so measure before relying on them. -18 dB is about knob ' + f(dbToKnob(18)) + '.'
+        : (k <= 0 ? 'Knob at 0 = muted.' : 'Estimated from a standard audio taper, not measured. Measure the real attenuation and switch to "Marked in dB" to enter it. -18 dB is about knob ' + f(dbToKnob(18)) + '.');
+    } else {
+      $(p + '_pothint').textContent = '0 dB = fully up. Each dB of attenuation raises the threshold by 1 dB.';
+    }
+  }
+}
+
 function syncWiring() {
   const mono = $('b_wire').value === 'mono';
   $('b_par').disabled = !mono;
@@ -379,11 +414,14 @@ $('copy').addEventListener('click', async () => {
 
 document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', () => {
   if (el.id === 'f_spk') applyPreset();
+  if (/_potmode$/.test(el.id) && $(el.id).value === 'db') $(el.id.replace('potmode', 'att')).value = 0;
   syncWiring();
+  syncPots();
   calc();
 }));
 applyPreset();
 syncWiring();
+syncPots();
 calc();
 </script>
 <script>
