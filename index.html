@@ -94,7 +94,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
   <div class="sh">Speaker (each)</div>
   <label><span>Continuous</span><span class="in"><input id="f_pc" type="number" value="680" step="any"><span class=u>W</span></span></label><label><span>Program (peak)</span><span class="in"><input id="f_pp" type="number" value="1360" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="f_z" type="number" value="8" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="f_sens" type="number" value="97" step="any"><span class=u>dB</span></span></label>
   <div class="sh">Amplifier</div>
-  <label><span>Power into 8 Ω</span><span class="in"><input id="f_p8" type="number" value="750" step="any"><span class=u>W</span></span></label><label><span>Power into 4 Ω</span><span class="in"><input id="f_p4" type="number" value="1200" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="f_p2" type="number" value="1500" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="f_gain" type="number" value="26" step="any"><span class=u>dB</span></span></label><label><span>Pot scale</span><span class="in"><select id="f_potmode"><option value="knob">Knob 0&ndash;10</option><option value="db" selected>Marked in dB</option></select></span></label><label id="f_knobrow"><span>Knob position</span><span class="in"><input id="f_knob" type="number" value="10" min="0" max="10" step="0.5"><span class=u>/10</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="f_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label><p class="hint" id="f_pothint"></p>
+  <label><span>Power into 8 Ω</span><span class="in"><input id="f_p8" type="number" value="750" step="any"><span class=u>W</span></span></label><label><span>Power into 4 Ω</span><span class="in"><input id="f_p4" type="number" value="1200" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="f_p2" type="number" value="1500" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="f_gain" type="number" value="26" step="any"><span class=u>dB</span></span></label><label><span>Max input level</span><span class="in"><input id="f_maxin" type="number" value="21" step="any"><span class=u>dBu</span></span></label><label><span>Input stage</span><span class="in"><select id="f_inpos"><option value="before" selected>Before pot (limit fixed)</option><option value="after">After pot (limit rises)</option></select></span></label><p class="hint">L2400: 21 dBu / 8.7 V (PDF). Unknown whether this is before or after the pot, so "before" is the cautious choice.</p><label><span>Pot scale</span><span class="in"><select id="f_potmode"><option value="knob">Knob 0&ndash;10</option><option value="db" selected>Marked in dB</option></select></span></label><label id="f_knobrow"><span>Knob position</span><span class="in"><input id="f_knob" type="number" value="10" min="0" max="10" step="0.5"><span class=u>/10</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="f_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label><p class="hint" id="f_pothint"></p>
   <label><span>Nominal input</span><span class="in"><select id="f_ref"><option value="1.12">1.12 V</option><option value="1.228" selected>+4 dBu (1.228 V)</option></select></span></label>
   <div class="sh">At the venue</div>
   <label><span>Speakers counted</span><span class="in"><input id="f_n" type="number" value="2" step="any" min="1" step="1"><span class="u"></span></span></label><label><span>Distance</span><span class="in"><input id="f_d" type="number" value="10" step="any"><span class=u>m</span></span></label>
@@ -105,7 +105,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
   <div class="sh">Speaker (each)</div>
   <label><span>Continuous</span><span class="in"><input id="b_pc" type="number" value="800" step="any"><span class=u>W</span></span></label><label><span>Program (peak)</span><span class="in"><input id="b_pp" type="number" value="1600" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="b_z" type="number" value="4" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="b_sens" type="number" value="100" step="any"><span class=u>dB</span></span></label>
   <div class="sh">Amplifier</div>
-  <label><span>Power into 4 Ω</span><span class="in"><input id="b_p4" type="number" value="1700" step="any"><span class=u>W</span></span></label><label><span>Power into 8 Ω</span><span class="in"><input id="b_p8" type="number" value="950" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="b_p2" type="number" value="3000" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class=u>dB</span></span></label><label><span>Pot scale</span><span class="in"><select id="b_potmode"><option value="knob" selected>Knob 0&ndash;10</option><option value="db">Marked in dB</option></select></span></label><label id="b_knobrow"><span>Knob position</span><span class="in"><input id="b_knob" type="number" value="10" min="0" max="10" step="0.5"><span class=u>/10</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="b_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label><p class="hint" id="b_pothint"></p>
+  <label><span>Power into 4 Ω</span><span class="in"><input id="b_p4" type="number" value="1700" step="any"><span class=u>W</span></span></label><label><span>Power into 8 Ω</span><span class="in"><input id="b_p8" type="number" value="950" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="b_p2" type="number" value="3000" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class=u>dB</span></span></label><label><span>Max input level</span><span class="in"><input id="b_maxin" type="number" value="12.2" step="any"><span class=u>dBu</span></span></label><label><span>Input stage</span><span class="in"><select id="b_inpos"><option value="before" selected>Before pot (limit fixed)</option><option value="after">After pot (limit rises)</option></select></span></label><p class="hint">T6.5 manual: max input 10 dBV = +12.2 dBu. If the input stage is before the pot, turning the knob down does not raise this limit.</p><label><span>Pot scale</span><span class="in"><select id="b_potmode"><option value="knob" selected>Knob 0&ndash;10</option><option value="db">Marked in dB</option></select></span></label><label id="b_knobrow"><span>Knob position</span><span class="in"><input id="b_knob" type="number" value="10" min="0" max="10" step="0.5"><span class=u>/10</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="b_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label><p class="hint" id="b_pothint"></p>
   <label><span>Nominal input</span><span class="in"><select id="b_ref"><option value="1.12" selected>1.12 V</option><option value="1.228">+4 dBu (1.228 V)</option></select></span></label>
   <div class="sh">Wiring</div>
   <label><span>Mode</span><span class="in"><select id="b_wire"><option value="stereo">Stereo</option><option value="mono">Mono (parallel)</option></select></span></label>
@@ -139,6 +139,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
 <li><b>How the limiter acts.</b> PeakPlus uses RMS detection at a fixed &infin;:1 ratio, so the sustained level never goes above the threshold. Transients are soft-clipped but can still overshoot by up to 3 dB.</li>
 <li><b>dbx's own method.</b> Set the threshold just below the level that clips the amp: amp clip in dBu minus 20. Lower it 3 dB more "to be absolutely safe" against overshoot. Example from the manual: amp clips at +6 dBu &rarr; &minus;14 dBFS, or &minus;17 dBFS with the cushion.</li>
 <li><b>What this calculator adds.</b> Three ceilings, and the lowest wins: (1) amp clip, minus the cushion; (2) the speaker's continuous rating at the sustained level; (3) the speaker's program rating during 3 dB overshoot transients. A common reduction is then applied if the venue limit needs it.</li>
+<li><b>Amp input limit.</b> Each amp's input stage clips at its maximum input level: T6.5 +12.2 dBu (10 dBV, Outline manual), L2400 +21 dBu. If that stage comes before the pot, turning the pot down raises the level needed for full power but not the input limit, so past a point the input clips before the amp reaches full power. The calculator treats this as a fourth ceiling. The amp's CLIP LED may only show output clipping, not input clipping.</li>
 <li>Amp pot attenuation raises the PA2 level needed for full power, which raises all three ceilings by the same amount. A 0&ndash;10 knob is converted with an assumed audio taper (knob 10 = 0 dB, 5 &asymp; &minus;20 dB, 0 = muted), which is only an estimate. <b>To measure it:</b> disconnect the speakers, feed the amp a steady sine tone (around 60 Hz for the sub) and read the output with a multimeter on AC volts, first at knob 10, then at your setting. Attenuation = 20 &times; log10(V10 &divide; Vsetting). Example: 40 V at 10 and 5 V at your setting is 18 dB.</li>
 <li>Program crest factor doesn't enter the threshold. The RMS detector holds the sustained level, and the soft clipper handles peaks. Sustained power is shown as a worst case (sine or heavily compressed program). Normal music averages less.</li>
 <li><b>Final check (manual p. 21).</b> Disconnect the speakers, play pink noise, raise each amp until its clip LED just lights, then lower the PA2 threshold until it stops. Use the calculator's value as the starting point and the clip LEDs as the final word.</li>
@@ -149,7 +150,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
       <li>Olive power is the sum of the two drivers' ratings: 300 W continuous (250 + 50), 600 W peak (500 + 100).</li>
       <li>Large top: JBL 2226H woofer (97 dB) plus Beyma CP650Ti (110 dB). The sensitivity uses the JBL figure only, so the real cabinet level is probably higher.</li>
       <li>Bass: Dynacord SRC 400 LO, 800 W rated, 1600 W program, 4 &Omega;, 100 dB. The 1600 W is a program rating, so the peak check is conservative.</li>
-      <li>Bass amp: Outline T6.5, 950 W / 1700 W / 3000 W at 8 / 4 / 2 &Omega;, 38.2 dB gain, 1.12 V sensitivity. Full-range amp: Dynacord L2400, 2 &times; 750 / 1200 / 1500 W at 8 / 4 / 2 &Omega;, 26 dB constant-gain mode.</li><li>PDF reference values (pots at 0 dB): sub &minus;0.9 dBu and top +13.0 dBu, set at the speakers' continuous ratings. The T6.5 at &minus;18 dB gives +17.1 dBu. With the 3 dB cushion the top becomes +11.0 dBu, because the L2400 clips at about +14.0 dBu, and +13.0 dBu plus 3 dB of overshoot would clip it by about 2 dB.</li><li>DriveRack PA2 manual (5044138-B): limiter pp. 43&ndash;44, gain structure and limiter calibration pp. 19&ndash;21, output meters p. 4.</li>
+      <li>Bass amp: Outline T6.5, 950 W / 1700 W / 3000 W at 8 / 4 / 2 &Omega;, 38.2 dB gain, 1.12 V sensitivity. Full-range amp: Dynacord L2400, 2 &times; 750 / 1200 / 1500 W at 8 / 4 / 2 &Omega;, 26 dB constant-gain mode.</li><li>PDF reference values (pots at 0 dB): sub &minus;0.9 dBu and top +13.0 dBu, set at the speakers' continuous ratings. The T6.5 at &minus;18 dB gives +17.1 dBu. With the 3 dB cushion the top becomes +11.0 dBu, because the L2400 clips at about +14.0 dBu, and +13.0 dBu plus 3 dB of overshoot would clip it by about 2 dB.</li><li>Outline T2.5/T4.5/T6.5 manual (outline.it, 2024): level knobs marked 0&ndash;10 with no dB scale; 950/1700/3000 W = 87.2/82.5/77.5 V rms at 8/4/2 &Omega;; gain 38.2 dB; sensitivity 1.12 V; max input 10 dBV.</li><li>DriveRack PA2 manual (5044138-B): limiter pp. 43&ndash;44, gain structure and limiter calibration pp. 19&ndash;21, output meters p. 4.</li>
       <li>Venue dBA limit, distances, speaker counts and the dBA correction are placeholders. Enter your own values.</li>
     </ul></details>
 </main>
@@ -181,6 +182,7 @@ function readSystem(p) {
     Pc: v(p + '_pc'), Pp: v(p + '_pp'), Z,
     S: v(p + '_sens'),
     P2: v(p + '_p2'), P4: v(p + '_p4'), P8: v(p + '_p8'),
+    att: v(p + '_att'), maxIn: v(p + '_maxin'), inAfter: $(p + '_inpos').value === 'after',
     gainDb: v(p + '_gain') - v(p + '_att'),   // pot attenuation reduces effective gain
     Vnom: parseFloat($(p + '_ref').value),
     Zeff: Z / npar,
@@ -208,10 +210,14 @@ function sysCalc(s, cush, M) {
   const La = -cush;                             // amp clip, minus optional overshoot cushion
   const Lc = db(Vc / Va);                       // sustained RMS at threshold = continuous rating
   const Lp = db(Vp / Va) - OVERSHOOT;           // 3 dB overshoot transients within program rating
-  const Lmin = Math.min(La, Lc, Lp);
-  const which = Lmin === La ? 'amp' : Lmin === Lc ? 'cont' : 'prog';
   const clipDbu = dBu(Va / Math.pow(10, s.gainDb / 20));   // PA2 output at which the amp reaches full power
-  return Object.assign({}, s, { Pamp, Va, Pspk, Vc, Vp, La, Lc, Lp, cush, which, T0: Lmin - M, clipDbu });
+  const maxInEff = isFinite(s.maxIn) ? s.maxIn + (s.inAfter && isFinite(s.att) ? s.att : 0) : Infinity;
+  const inHead = maxInEff - clipDbu;            // dB the input can go above the full-power point (negative = input clips first)
+  const Li = inHead - cush;                     // amp input clipping, minus the same overshoot cushion
+  const Lmin = Math.min(La, Lc, Lp, Li);
+  const which = Lmin === Li && Li < La ? 'in' : Lmin === La ? 'amp' : Lmin === Lc ? 'cont' : 'prog';
+  const PmaxOut = Pspk * Math.pow(10, Math.min(0, inHead) / 10);   // most power one speaker can get before input clipping
+  return Object.assign({}, s, { Pamp, Va, Pspk, Vc, Vp, La, Lc, Lp, Li, inHead, maxInEff, PmaxOut, cush, which, T0: Lmin - M, clipDbu });
 }
 
 // Unweighted SPL at the venue from one system, when its threshold is lowered by x dB
@@ -256,6 +262,7 @@ function scenario(F, B, cush, M, Lim, c) {
     let binding;
     if (raw > 0) binding = 'PA2 full scale';
     else if (venueReady && x < 0) binding = 'combined venue limit';
+    else if (s.which === 'in') binding = s.cush > 0 ? 'amp input clipping (3 dB cushion)' : 'amp input clipping';
     else if (s.which === 'amp') binding = s.cush > 0 ? 'amp clip point (3 dB cushion)' : 'amp clip point';
     else if (s.which === 'cont') binding = 'speaker continuous rating';
     else binding = 'speaker program rating (with 3 dB overshoot)';
@@ -295,6 +302,7 @@ function calc() {
     const s = o.s;
     if (o.raw > 0) warns.push(`${s.name}: full power needs +${f(s.clipDbu)} dBu at the PA2 output, but the PA2 tops out at +20 dBu. The threshold is capped at 0 dBFS.`);
     if (s.Pspk > s.Pc) warns.push(`${s.name}: at full amp output one speaker would get ${f(s.Pspk, 0)} W, above its ${f(s.Pc, 0)} W continuous rating.`);
+    if (s.inHead < 0) warns.push(`${s.name} amp: its input clips at +${f(s.maxInEff)} dBu, ${f(-s.inHead)} dB before the amp reaches full power (+${f(s.clipDbu)} dBu needed). With this pot setting it can deliver only about ${f(s.PmaxOut, 0)} W per speaker. Less pot attenuation gives the power back.`);
     if (o.ovClip > 0.05 && o.raw <= 0) warns.push(`${s.name}: transients can overshoot the threshold by up to 3 dB and clip the amp by ${f(o.ovClip)} dB. Use the 3 dB cushion to avoid this.`);
     if (s.Pp < s.Pc) warns.push(`${s.name}: the program rating is below the continuous rating. Check the spec sheet.`);
     if (o.thr < -60) warns.push(`${s.name}: the threshold is below the PA2 floor of -60 dBFS.`);
@@ -320,6 +328,8 @@ function calc() {
     row('Speaker program limit (each)', o => `${f(o.s.Pp, 0)} W`),
     row('Full-power point at PA2 output', o => `${f(o.s.clipDbu)} dBu`),
     row('Headroom above nominal input', o => `${f(o.headroom)} dB`),
+    row('Amp max input (effective)', o => isFinite(o.s.maxInEff) ? `${f(o.s.maxInEff)} dBu` : '—'),
+    row('Threshold from amp input limit', o => isFinite(o.s.Li) ? `${f(o.s.clipDbu - FS_AT_DBU + o.s.Li)} dBFS` : '—'),
     row('Threshold from amp clip', o => `${f(o.s.clipDbu - FS_AT_DBU + o.s.La)} dBFS`),
     row('Threshold from speaker continuous', o => `${f(o.s.clipDbu - FS_AT_DBU + o.s.Lc)} dBFS`),
     row('Threshold from speaker program', o => `${f(o.s.clipDbu - FS_AT_DBU + o.s.Lp)} dBFS`),
