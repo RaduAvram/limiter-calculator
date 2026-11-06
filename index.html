@@ -91,7 +91,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
   <div class="seg" id="seg"><button type="button" data-v="large">Large top</button><button type="button" data-v="olive">Olive</button></div>
   <select id="f_spk" hidden><option value="large" selected>Large top</option><option value="olive">Olive</option></select>
   <div class="sh">Speaker (each)</div>
-  <label><span>Continuous</span><span class="in"><input id="f_pc" type="number" value="680" step="any"><span class=u>W</span></span></label><label><span>Peak</span><span class="in"><input id="f_pp" type="number" value="1360" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="f_z" type="number" value="8" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="f_sens" type="number" value="97" step="any"><span class=u>dB</span></span></label>
+  <label><span>Continuous</span><span class="in"><input id="f_pc" type="number" value="680" step="any"><span class=u>W</span></span></label><label><span>Program (peak)</span><span class="in"><input id="f_pp" type="number" value="1360" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="f_z" type="number" value="8" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="f_sens" type="number" value="97" step="any"><span class=u>dB</span></span></label>
   <div class="sh">Amplifier</div>
   <label><span>Power into 8 Ω</span><span class="in"><input id="f_p8" type="number" value="750" step="any"><span class=u>W</span></span></label><label><span>Power into 4 Ω</span><span class="in"><input id="f_p4" type="number" value="1200" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="f_p2" type="number" value="1500" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="f_gain" type="number" value="26" step="any"><span class=u>dB</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="f_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
   <label><span>Nominal input</span><span class="in"><select id="f_ref"><option value="1.12">1.12 V</option><option value="1.228" selected>+4 dBu (1.228 V)</option></select></span></label>
@@ -103,7 +103,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
 <section class="card">
   <h2><span class="dot b"></span>Bass</h2>
   <div class="sh">Speaker (each)</div>
-  <label><span>Continuous</span><span class="in"><input id="b_pc" type="number" value="800" step="any"><span class=u>W</span></span></label><label><span>Peak</span><span class="in"><input id="b_pp" type="number" value="1600" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="b_z" type="number" value="4" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="b_sens" type="number" value="100" step="any"><span class=u>dB</span></span></label>
+  <label><span>Continuous</span><span class="in"><input id="b_pc" type="number" value="800" step="any"><span class=u>W</span></span></label><label><span>Program (peak)</span><span class="in"><input id="b_pp" type="number" value="1600" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="b_z" type="number" value="4" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="b_sens" type="number" value="100" step="any"><span class=u>dB</span></span></label>
   <div class="sh">Amplifier</div>
   <label><span>Power into 4 Ω</span><span class="in"><input id="b_p4" type="number" value="1700" step="any"><span class=u>W</span></span></label><label><span>Power into 8 Ω</span><span class="in"><input id="b_p8" type="number" value="950" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="b_p2" type="number" value="3000" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class=u>dB</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="b_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
   <label><span>Nominal input</span><span class="in"><select id="b_ref"><option value="1.12" selected>1.12 V</option><option value="1.228">+4 dBu (1.228 V)</option></select></span></label>
@@ -116,10 +116,10 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
 
 <section class="card">
   <h2><span class="dot s"></span>Limiter and venue</h2>
-  <div class="sh">Program</div>
-  <label><span>Limit basis</span><span class="in"><select id="basis"><option value="cont" selected>Continuous rating (PDF method)</option><option value="peak">Continuous + peak check</option></select></span></label>
-  <p class="hint">PDF method: threshold where each speaker reaches its continuous rating. Peak check also keeps program peaks (crest factor + 3 dB overshoot) under the peak rating and amp clip, which is much lower.</p>
-  <label><span>Crest factor</span><span class="in"><input id="cf" type="number" value="12" step="any" min="0"><span class=u>dB</span></span></label><label><span>Safety margin</span><span class="in"><input id="margin" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
+  <div class="sh">Limiter</div>
+  <label><span>Overshoot cushion</span><span class="in"><select id="cush"><option value="3" selected>3 dB (dbx safe)</option><option value="0">None</option></select></span></label>
+  <label><span>Safety margin</span><span class="in"><input id="margin" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
+  <p class="hint">Threshold is in dBFS at the PA2 output: 0 dBFS = +20 dBu, &minus;20 dBFS = 0 dBu. RMS detection, &infin;:1, soft-clipped transients up to 3 dB over threshold.</p>
   <label><span>Over Easy (notes)</span><span class="in"><select id="oe"><option>OFF</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></span></label>
   <div class="sh">Venue</div>
   <label><span>Max level</span><span class="in"><input id="lim" type="number" value="100" step="any"><span class=u>dBA</span></span></label><label><span>dBA correction</span><span class="in"><input id="corr" type="number" value="0" step="any"><span class=u>dB</span></span></label>
@@ -135,21 +135,21 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
   <div class="summary" id="summary"></div>
 </details>
 <details class="note"><summary>How it works</summary><ul>
-      <li>Each system's continuous and peak ceilings come from its speaker ratings and the amp's full-power voltage. The peak check uses the crest factor plus the PA2's roughly 3 dB overshoot.</li>
-      <li>The venue limit adds both systems' sound at the measurement point, power-summed. If the total is too high, both thresholds drop by the same amount until it fits.</li>
-      <li>The threshold is set where each amp reaches full power. The nominal input sets only the headroom display.</li>
-      <li>With a 2× peak rating the RMS limit sits about one crest factor below the continuous limit. To reach the continuous rating, the peak rating needs to be roughly the crest factor plus 3 dB above continuous.</li>
-      <li>Summed driver ratings are optimistic for passive cabinets, since each driver's own limit at the crossover can be lower. Confirm the cabinet's peak rating if you can.</li>
-      <li>The PA2 scale assumes 0 dBFS = +20 dBu at the output. The PA2 output tops out at that level, so amps that need more are flagged.</li>
-      <li>The venue calculation assumes free-field distance falloff (6 dB per doubling). Indoors, reflections raise the level, so measure and adjust the correction.</li>
-      <li>Mono sum level is not modelled. If you sum L and R into one bass feed without a pad, the feed is up to 6 dB hotter, so lower the bass threshold by that amount.</li>
-      <li>Over Easy changes the knee shape, not this math. Use the 3 dB overshoot margin when you run it hard.</li>
-    </ul></details>
+<li><b>What the number means.</b> The PA2 threshold is a level at the output in dBFS, where 0 dBFS = +20 dBu (the PA2's maximum output) and &minus;20 dBFS = 0 dBu. It is measured after the crossover and output gain, so it is an absolute output level.</li>
+<li><b>How the limiter acts.</b> PeakPlus uses RMS detection at a fixed &infin;:1 ratio, so the sustained level never goes above the threshold. Transients are soft-clipped but can still overshoot by up to 3 dB.</li>
+<li><b>dbx's own method.</b> Set the threshold just below the level that clips the amp: amp clip in dBu minus 20. Lower it 3 dB more "to be absolutely safe" against overshoot. Example from the manual: amp clips at +6 dBu &rarr; &minus;14 dBFS, or &minus;17 dBFS with the cushion.</li>
+<li><b>What this calculator adds.</b> Three ceilings, and the lowest wins: (1) amp clip, minus the cushion; (2) the speaker's continuous rating at the sustained level; (3) the speaker's program rating during 3 dB overshoot transients. A common reduction is then applied if the venue limit needs it.</li>
+<li>Amp pot attenuation raises the PA2 level needed for full power, which raises all three ceilings by the same amount.</li>
+<li>Program crest factor doesn't enter the threshold. The RMS detector holds the sustained level, and the soft clipper handles peaks. Sustained power is shown as a worst case (sine or heavily compressed program). Normal music averages less.</li>
+<li><b>Final check (manual p. 21).</b> Disconnect the speakers, play pink noise, raise each amp until its clip LED just lights, then lower the PA2 threshold until it stops. Use the calculator's value as the starting point and the clip LEDs as the final word.</li>
+<li>The venue level assumes free-field falloff (6 dB per doubling). Indoors it will be higher, so measure and adjust the dBA correction.</li>
+<li>Mono summing of L+R into one bass feed isn't modelled. If the sum adds level, lower the bass threshold to match.</li>
+</ul></details>
 <details class="note"><summary>Notes and sources</summary><ul><li>Olive cabinet: Beyma 10CMV2 woofer, 8 &Omega;, 250 W AES / 500 W program, 95 dB 1 W/1 m. Beyma SMC-8060 tweeter, 8 &Omega;, 107 dB 1 W/1 m, reduced by a 12 dB pad, which brings it close to the woofer's level. The cabinet uses 95 dB. The SMC-8060 without /N is taken to have the same power rating as the /N.</li>
       <li>Olive power is the sum of the two drivers' ratings: 300 W continuous (250 + 50), 600 W peak (500 + 100).</li>
       <li>Large top: JBL 2226H woofer (97 dB) plus Beyma CP650Ti (110 dB). The sensitivity uses the JBL figure only, so the real cabinet level is probably higher.</li>
       <li>Bass: Dynacord SRC 400 LO, 800 W rated, 1600 W program, 4 &Omega;, 100 dB. The 1600 W is a program rating, so the peak check is conservative.</li>
-      <li>Bass amp: Outline T6.5, 950 W / 1700 W / 3000 W at 8 / 4 / 2 &Omega;, 38.2 dB gain, 1.12 V sensitivity. Full-range amp: Dynacord L2400, 2 &times; 750 / 1200 / 1500 W at 8 / 4 / 2 &Omega;, 26 dB constant-gain mode.</li><li>PDF check values (continuous basis, no venue limit, pots at 0 dB): sub &minus;0.9 dBu, top +13.0 dBu with the JBL's 600 W alone (680 W summed gives +13.5 dBu). With the T6.5 pot at &minus;18 dB, the sub becomes +17.1 dBu. PA2: 0 dBFS = +20 dBu max output.</li>
+      <li>Bass amp: Outline T6.5, 950 W / 1700 W / 3000 W at 8 / 4 / 2 &Omega;, 38.2 dB gain, 1.12 V sensitivity. Full-range amp: Dynacord L2400, 2 &times; 750 / 1200 / 1500 W at 8 / 4 / 2 &Omega;, 26 dB constant-gain mode.</li><li>PDF reference values (pots at 0 dB): sub &minus;0.9 dBu and top +13.0 dBu, set at the speakers' continuous ratings. The T6.5 at &minus;18 dB gives +17.1 dBu. With the 3 dB cushion the top becomes +11.0 dBu, because the L2400 clips at about +14.0 dBu, and +13.0 dBu plus 3 dB of overshoot would clip it by about 2 dB.</li><li>DriveRack PA2 manual (5044138-B): limiter pp. 43&ndash;44, gain structure and limiter calibration pp. 19&ndash;21, output meters p. 4.</li>
       <li>Venue dBA limit, distances, speaker counts and the dBA correction are placeholders. Enter your own values.</li>
     </ul></details>
 </main>
@@ -194,21 +194,24 @@ function validSystem(s) {
     && isFinite(s.gainDb);
 }
 
-// Amp output and speaker ceilings for one system
-function sysCalc(s, CF, M, basis) {
+// Amp output and speaker ceilings for one system.
+// All levels in dB relative to the PA2 output that drives the amp to full power with a sine.
+// PA2 limiter (manual p. 43): RMS detection, infinity:1, transients soft-clipped but up to 3 dB over threshold.
+function sysCalc(s, cush, M) {
   const Zl = s.Zeff;
   const P2 = isFinite(s.P2) && s.P2 > 0 ? s.P2 : s.P4;
   const Pamp = Zl <= 2 ? P2 : Zl < 4 ? P2 + (s.P4 - P2) * (Zl - 2) / 2 : Zl >= 8 ? s.P8 : s.P4 + (s.P8 - s.P4) * (Zl - 4) / 4;
   const Va = Math.sqrt(Pamp * Zl);              // amp full-power RMS volts into its load
   const Pspk = Va * Va / s.Z;                   // power one speaker gets at that voltage
   const Vc = Math.sqrt(s.Pc * s.Z);             // speaker continuous RMS volts
-  const Vp = Math.sqrt(s.Pp * s.Z);             // speaker peak volts
-  const Lc = Math.min(0, db(Vc / Va));
-  const Lp = Math.min(db(Math.SQRT2), db(Vp / Va));
-  const Tr = Lc - M;
-  const Tp = Lp - CF - OVERSHOOT - M;
+  const Vp = Math.sqrt(s.Pp * s.Z);             // speaker program RMS volts
+  const La = -cush;                             // amp clip, minus optional overshoot cushion
+  const Lc = db(Vc / Va);                       // sustained RMS at threshold = continuous rating
+  const Lp = db(Vp / Va) - OVERSHOOT;           // 3 dB overshoot transients within program rating
+  const Lmin = Math.min(La, Lc, Lp);
+  const which = Lmin === La ? 'amp' : Lmin === Lc ? 'cont' : 'prog';
   const clipDbu = dBu(Va / Math.pow(10, s.gainDb / 20));   // PA2 output at which the amp reaches full power
-  return Object.assign({}, s, { Pamp, Va, Pspk, Vc, Vp, Tr, Tp, T0: basis === 'peak' ? Math.min(Tr, Tp) : Tr, basis, clipDbu });
+  return Object.assign({}, s, { Pamp, Va, Pspk, Vc, Vp, La, Lc, Lp, cush, which, T0: Lmin - M, clipDbu });
 }
 
 // Unweighted SPL at the venue from one system, when its threshold is lowered by x dB
@@ -231,9 +234,8 @@ function solveX(systems, target) {
 }
 
 // Full calculation for one pair of systems
-function scenario(F, B, CF, M, Lim, c) {
-  const basis = $('basis').value;
-  const sysF = sysCalc(F, CF, M, basis), sysB = sysCalc(B, CF, M, basis);
+function scenario(F, B, cush, M, Lim, c) {
+  const sysF = sysCalc(F, cush, M), sysB = sysCalc(B, cush, M);
   const systems = [sysF, sysB];
   const venueOn = isFinite(Lim);
   const venueReady = venueOn && isFinite(F.S) && isFinite(B.S);
@@ -245,7 +247,8 @@ function scenario(F, B, CF, M, Lim, c) {
     const raw = s.clipDbu - FS_AT_DBU + T;
     const thr = Math.floor(Math.min(0, raw) * 10) / 10;
     const Prms = s.Pspk * Math.pow(10, T / 10);
-    const Ppk = Prms * Math.pow(10, CF / 10);
+    const Ppk = Prms * Math.pow(10, OVERSHOOT / 10);
+    const ovClip = T + OVERSHOOT;   // dB re amp clip reached by overshoot transients
     const SPL1m = s.S + 10 * Math.log10(Prms);
     const venueSys = isFinite(s.S) ? venueLevel(s, x) + c : NaN;
     const headroom = s.clipDbu - dBu(s.Vnom);
@@ -253,9 +256,10 @@ function scenario(F, B, CF, M, Lim, c) {
     let binding;
     if (raw > 0) binding = 'PA2 full scale';
     else if (venueReady && x < 0) binding = 'combined venue limit';
-    else if (s.basis !== 'peak' || s.Tr <= s.Tp) binding = 'continuous (RMS) rating';
-    else binding = 'peak rating (crest factor + overshoot)';
-    return { s, raw, thr, Prms, Ppk, SPL1m, venueSys, headroom, thrVsNom, binding };
+    else if (s.which === 'amp') binding = s.cush > 0 ? 'amp clip point (3 dB cushion)' : 'amp clip point';
+    else if (s.which === 'cont') binding = 'speaker continuous rating';
+    else binding = 'speaker program rating (with 3 dB overshoot)';
+    return { s, raw, thr, Prms, Ppk, ovClip, SPL1m, venueSys, headroom, thrVsNom, binding };
   });
   return { out, sol, x, venueOn, venueReady, Lim, c };
 }
@@ -267,18 +271,18 @@ function setRes(p, o) {
 }
 
 function calc() {
-  const CF = v('cf'), M = v('margin'), Lim = v('lim');
+  const cush = parseFloat($('cush').value), M = v('margin'), Lim = v('lim');
   const c = isFinite(v('corr')) ? v('corr') : 0;
   const F = readSystem('f'), B = readSystem('b');
-  const sharedOk = isFinite(CF) && CF >= 0 && isFinite(M) && M >= 0;
+  const sharedOk = isFinite(M) && M >= 0;
 
   if (!validSystem(F) || !validSystem(B) || !sharedOk) {
-    $('err').textContent = 'Check the inputs. Ratings, impedances, gains, distances and speaker counts must be positive. Crest factor and margin cannot be negative.';
+    $('err').textContent = 'Check the inputs. Ratings, impedances, gains, distances and speaker counts must be positive. The safety margin cannot be negative.';
     return;
   }
   $('err').textContent = '';
 
-  const sc = scenario(F, B, CF, M, Lim, c);
+  const sc = scenario(F, B, cush, M, Lim, c);
   const { out, sol, x, venueOn, venueReady } = sc;
   const [fo, bo] = out;
   const cabName = PRESETS[$('f_spk').value] ? PRESETS[$('f_spk').value].name : 'Full range';
@@ -291,7 +295,8 @@ function calc() {
     const s = o.s;
     if (o.raw > 0) warns.push(`${s.name}: full power needs +${f(s.clipDbu)} dBu at the PA2 output, but the PA2 tops out at +20 dBu. The threshold is capped at 0 dBFS.`);
     if (s.Pspk > s.Pc) warns.push(`${s.name}: at full amp output one speaker would get ${f(s.Pspk, 0)} W, above its ${f(s.Pc, 0)} W continuous rating.`);
-    if (s.Pp < s.Pc) warns.push(`${s.name}: the peak rating is below the continuous rating. Check the spec sheet.`);
+    if (o.ovClip > 0.05 && o.raw <= 0) warns.push(`${s.name}: transients can overshoot the threshold by up to 3 dB and clip the amp by ${f(o.ovClip)} dB. Use the 3 dB cushion to avoid this.`);
+    if (s.Pp < s.Pc) warns.push(`${s.name}: the program rating is below the continuous rating. Check the spec sheet.`);
     if (o.thr < -60) warns.push(`${s.name}: the threshold is below the PA2 floor of -60 dBFS.`);
   }
   if (venueOn && !venueReady) warns.push('Enter the sensitivity for both systems to apply the venue dBA limit.');
@@ -308,16 +313,18 @@ function calc() {
     row('Amp power into load', o => `${f(o.s.Pamp, 0)} W`),
     row('Amp full-power voltage', o => `${f(o.s.Va)} V rms`),
     row('Speaker continuous limit (each)', o => `${f(o.s.Pc, 0)} W`),
-    row('Speaker peak limit (each)', o => `${f(o.s.Pp, 0)} W`),
+    row('Speaker program limit (each)', o => `${f(o.s.Pp, 0)} W`),
     row('Full-power point at PA2 output', o => `${f(o.s.clipDbu)} dBu`),
     row('Headroom above nominal input', o => `${f(o.headroom)} dB`),
-    row('Threshold from continuous rating', o => `${f(o.s.clipDbu - FS_AT_DBU + o.s.Tr)} dBFS`),
-    row('Threshold from peak rating', o => `${f(o.s.clipDbu - FS_AT_DBU + o.s.Tp)} dBFS`),
+    row('Threshold from amp clip', o => `${f(o.s.clipDbu - FS_AT_DBU + o.s.La)} dBFS`),
+    row('Threshold from speaker continuous', o => `${f(o.s.clipDbu - FS_AT_DBU + o.s.Lc)} dBFS`),
+    row('Threshold from speaker program', o => `${f(o.s.clipDbu - FS_AT_DBU + o.s.Lp)} dBFS`),
     row('Common venue reduction', () => `${f(x)} dB`),
     row('Final threshold', o => `${f(o.thr)} dBFS`),
     row('Threshold relative to nominal input', o => `${f(o.thrVsNom)} dB`),
-    row('Expected RMS power per speaker', o => `${f(o.Prms, 1)} W`),
-    row('Expected peak power per speaker', o => `${f(o.Ppk, 0)} W`),
+    row('Max sustained power per speaker', o => `${f(o.Prms, 0)} W`),
+    row('Overshoot transients per speaker', o => `${f(o.Ppk, 0)} W`),
+    row('Overshoot vs amp clip', o => `${f(o.ovClip)} dB`),
     row('Level at venue, this system', o => isFinite(o.venueSys) ? `${f(o.venueSys)} dBA` : '—'),
     row('Approx. SPL at 1 m', o => isFinite(o.SPL1m) ? `${f(o.SPL1m)} dB` : 'enter sensitivity')
   ].join('');
@@ -329,7 +336,7 @@ function calc() {
     Fk.Pp = PRESETS[k].pp;
     Fk.S = PRESETS[k].sens;
     if (!validSystem(Fk)) return null;
-    return { name: PRESETS[k].name, r: scenario(Fk, B, CF, M, Lim, c) };
+    return { name: PRESETS[k].name, r: scenario(Fk, B, cush, M, Lim, c) };
   }).filter(Boolean);
   const crow = (label, fn) => `<tr><td>${label}</td>${cols.map(col => `<td>${fn(col.r)}</td>`).join('')}</tr>`;
   $('cmp').innerHTML = `<tr><th></th>${cols.map(col => `<th>${col.name}</th>`).join('')}</tr>` + [
@@ -340,9 +347,9 @@ function calc() {
     crow('Combined at venue', r => r.venueReady ? `${f(r.sol.Ltot + c)} dBA` : '—')
   ].join('');
 
-  lastSummary = `PA2 limiter, ${cabName} selected: full range ${f(fo.thr)} dBFS (${f(fo.thr + FS_AT_DBU)} dBu), bass ${f(bo.thr)} dBFS (${f(bo.thr + FS_AT_DBU)} dBu), basis ${$('basis').value === 'peak' ? 'continuous + peak' : 'continuous'}` +
+  lastSummary = `PA2 limiter, ${cabName} selected: full range ${f(fo.thr)} dBFS (${f(fo.thr + FS_AT_DBU)} dBu), bass ${f(bo.thr)} dBFS (${f(bo.thr + FS_AT_DBU)} dBu), cushion ${cush} dB` +
     (venueReady ? `. Combined venue ${f(sol.Ltot + c)} dBA vs ${f(Lim, 0)} dBA limit (common reduction ${f(x)} dB)` : '') +
-    `. Crest ${CF} dB, margin ${M} dB, Over Easy ${$('oe').value}. Bass wiring: ${B.isMono ? 'mono, ' + B.npar + ' in parallel' : 'stereo'}.`;
+    `, margin ${M} dB, Over Easy ${$('oe').value}. Bass wiring: ${B.isMono ? 'mono, ' + B.npar + ' in parallel' : 'stereo'}.`;
   $('summary').textContent = lastSummary;
 }
 
