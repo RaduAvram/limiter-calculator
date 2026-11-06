@@ -94,7 +94,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
   <div class="sh">Speaker (each)</div>
   <label><span>Continuous</span><span class="in"><input id="f_pc" type="number" value="680" step="any"><span class=u>W</span></span></label><label><span>Program (peak)</span><span class="in"><input id="f_pp" type="number" value="1360" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="f_z" type="number" value="8" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="f_sens" type="number" value="97" step="any"><span class=u>dB</span></span></label>
   <div class="sh">Amplifier</div>
-  <label><span>Power into 8 Ω</span><span class="in"><input id="f_p8" type="number" value="750" step="any"><span class=u>W</span></span></label><label><span>Power into 4 Ω</span><span class="in"><input id="f_p4" type="number" value="1200" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="f_p2" type="number" value="1500" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="f_gain" type="number" value="26" step="any"><span class=u>dB</span></span></label><label><span>Max input level</span><span class="in"><input id="f_maxin" type="number" value="21" step="any"><span class=u>dBu</span></span></label><label><span>Input stage</span><span class="in"><select id="f_inpos"><option value="before" selected>Before pot (limit fixed)</option><option value="after">After pot (limit rises)</option></select></span></label><p class="hint">L2400: 21 dBu / 8.7 V (PDF). Unknown whether this is before or after the pot, so "before" is the cautious choice.</p><label><span>Pot scale</span><span class="in"><select id="f_potmode"><option value="knob">Knob 0&ndash;10</option><option value="db" selected>Marked in dB</option></select></span></label><label id="f_knobrow"><span>Knob position</span><span class="in"><input id="f_knob" type="number" value="10" min="0" max="10" step="0.5"><span class=u>/10</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="f_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label><p class="hint" id="f_pothint"></p>
+  <label><span>Power into 8 Ω</span><span class="in"><input id="f_p8" type="number" value="750" step="any"><span class=u>W</span></span></label><label><span>Power into 4 Ω</span><span class="in"><input id="f_p4" type="number" value="1200" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="f_p2" type="number" value="1500" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="f_gain" type="number" value="26" step="any"><span class=u>dB</span></span></label><label><span>Max input level</span><span class="in"><input id="f_maxin" type="number" value="21" step="any"><span class=u>dBu</span></span></label><label><span>Input stage</span><span class="in"><select id="f_inpos"><option value="before" selected>Before pot (limit fixed)</option><option value="after">After pot (limit rises)</option></select></span></label><p class="hint">L2400: 21 dBu / 8.7 V (PDF). Unknown whether this is before or after the pot, so "before" is the cautious choice.</p><label><span>Pot scale</span><span class="in"><select id="f_potmode"><option value="staged">Gain-staged to PA2 max</option><option value="knob">Knob 0&ndash;10</option><option value="db" selected>Marked in dB</option></select></span></label><label id="f_knobrow"><span>Knob position</span><span class="in"><input id="f_knob" type="number" value="10" min="0" max="10" step="0.5"><span class=u>/10</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="f_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label><p class="hint" id="f_pothint"></p>
   <label><span>Nominal input</span><span class="in"><select id="f_ref"><option value="1.12">1.12 V</option><option value="1.228" selected>+4 dBu (1.228 V)</option></select></span></label>
   <div class="sh">At the venue</div>
   <label><span>Speakers counted</span><span class="in"><input id="f_n" type="number" value="2" step="any" min="1" step="1"><span class="u"></span></span></label><label><span>Distance</span><span class="in"><input id="f_d" type="number" value="10" step="any"><span class=u>m</span></span></label>
@@ -105,7 +105,7 @@ td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
   <div class="sh">Speaker (each)</div>
   <label><span>Continuous</span><span class="in"><input id="b_pc" type="number" value="800" step="any"><span class=u>W</span></span></label><label><span>Program (peak)</span><span class="in"><input id="b_pp" type="number" value="1600" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="b_z" type="number" value="4" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="b_sens" type="number" value="100" step="any"><span class=u>dB</span></span></label>
   <div class="sh">Amplifier</div>
-  <label><span>Power into 4 Ω</span><span class="in"><input id="b_p4" type="number" value="1700" step="any"><span class=u>W</span></span></label><label><span>Power into 8 Ω</span><span class="in"><input id="b_p8" type="number" value="950" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="b_p2" type="number" value="3000" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class=u>dB</span></span></label><label><span>Max input level</span><span class="in"><input id="b_maxin" type="number" value="12.2" step="any"><span class=u>dBu</span></span></label><label><span>Input stage</span><span class="in"><select id="b_inpos"><option value="before" selected>Before pot (limit fixed)</option><option value="after">After pot (limit rises)</option></select></span></label><p class="hint">T6.5 manual: max input 10 dBV = +12.2 dBu. If the input stage is before the pot, turning the knob down does not raise this limit.</p><label><span>Pot scale</span><span class="in"><select id="b_potmode"><option value="knob" selected>Knob 0&ndash;10</option><option value="db">Marked in dB</option></select></span></label><label id="b_knobrow"><span>Knob position</span><span class="in"><input id="b_knob" type="number" value="10" min="0" max="10" step="0.5"><span class=u>/10</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="b_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label><p class="hint" id="b_pothint"></p>
+  <label><span>Power into 4 Ω</span><span class="in"><input id="b_p4" type="number" value="1700" step="any"><span class=u>W</span></span></label><label><span>Power into 8 Ω</span><span class="in"><input id="b_p8" type="number" value="950" step="any"><span class=u>W</span></span></label><label><span>Power into 2 Ω</span><span class="in"><input id="b_p2" type="number" value="3000" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class=u>dB</span></span></label><label><span>Max input level</span><span class="in"><input id="b_maxin" type="number" value="12.2" step="any"><span class=u>dBu</span></span></label><label><span>Input stage</span><span class="in"><select id="b_inpos"><option value="before" selected>Before pot (limit fixed)</option><option value="after">After pot (limit rises)</option></select></span></label><p class="hint">T6.5 manual: max input 10 dBV = +12.2 dBu. If the input stage is before the pot, turning the knob down does not raise this limit.</p><label><span>Pot scale</span><span class="in"><select id="b_potmode"><option value="staged" selected>Gain-staged to PA2 max</option><option value="knob">Knob 0&ndash;10</option><option value="db">Marked in dB</option></select></span></label><label id="b_knobrow"><span>Knob position</span><span class="in"><input id="b_knob" type="number" value="10" min="0" max="10" step="0.5"><span class=u>/10</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="b_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label><p class="hint" id="b_pothint"></p>
   <label><span>Nominal input</span><span class="in"><select id="b_ref"><option value="1.12" selected>1.12 V</option><option value="1.228">+4 dBu (1.228 V)</option></select></span></label>
   <div class="sh">Wiring</div>
   <label><span>Mode</span><span class="in"><select id="b_wire"><option value="stereo">Stereo</option><option value="mono">Mono (parallel)</option></select></span></label>
@@ -182,6 +182,7 @@ function readSystem(p) {
     Pc: v(p + '_pc'), Pp: v(p + '_pp'), Z,
     S: v(p + '_sens'),
     P2: v(p + '_p2'), P4: v(p + '_p4'), P8: v(p + '_p8'),
+    gainRaw: v(p + '_gain'), staged: $(p + '_potmode').value === 'staged',
     att: v(p + '_att'), maxIn: v(p + '_maxin'), inAfter: $(p + '_inpos').value === 'after',
     gainDb: v(p + '_gain') - v(p + '_att'),   // pot attenuation reduces effective gain
     Vnom: parseFloat($(p + '_ref').value),
@@ -210,14 +211,21 @@ function sysCalc(s, cush, M) {
   const La = -cush;                             // amp clip, minus optional overshoot cushion
   const Lc = db(Vc / Va);                       // sustained RMS at threshold = continuous rating
   const Lp = db(Vp / Va) - OVERSHOOT;           // 3 dB overshoot transients within program rating
-  const clipDbu = dBu(Va / Math.pow(10, s.gainDb / 20));   // PA2 output at which the amp reaches full power
-  const maxInEff = isFinite(s.maxIn) ? s.maxIn + (s.inAfter && isFinite(s.att) ? s.att : 0) : Infinity;
+  // PA2 output at which the amp reaches full power
+  const clip0 = dBu(Va / Math.pow(10, s.gainRaw / 20));          // with the pot fully up
+  let att = isFinite(s.att) ? s.att : 0, clipDbu;
+  if (s.staged) {                                                // pot set so the amp just clips at the PA2's +20 dBu
+    att = Math.max(0, FS_AT_DBU - clip0);
+    clipDbu = clip0 + att;
+  } else clipDbu = dBu(Va / Math.pow(10, s.gainDb / 20));
+  // gain-staged: the amp was seen reaching full power, so its input stage is not the limit
+  const maxInEff = s.staged ? Infinity : isFinite(s.maxIn) ? s.maxIn + (s.inAfter ? att : 0) : Infinity;
   const inHead = maxInEff - clipDbu;            // dB the input can go above the full-power point (negative = input clips first)
   const Li = inHead - cush;                     // amp input clipping, minus the same overshoot cushion
   const Lmin = Math.min(La, Lc, Lp, Li);
   const which = Lmin === Li && Li < La ? 'in' : Lmin === La ? 'amp' : Lmin === Lc ? 'cont' : 'prog';
   const PmaxOut = Pspk * Math.pow(10, Math.min(0, inHead) / 10);   // most power one speaker can get before input clipping
-  return Object.assign({}, s, { Pamp, Va, Pspk, Vc, Vp, La, Lc, Lp, Li, inHead, maxInEff, PmaxOut, cush, which, T0: Lmin - M, clipDbu });
+  return Object.assign({}, s, { att, Pamp, Va, Pspk, Vc, Vp, La, Lc, Lp, Li, inHead, maxInEff, PmaxOut, cush, which, T0: Lmin - M, clipDbu });
 }
 
 // Unweighted SPL at the venue from one system, when its threshold is lowered by x dB
@@ -296,6 +304,12 @@ function calc() {
   $('tag_f').textContent = 'Full range: ' + cabName;
   setRes('f', fo);
   setRes('b', bo);
+  for (const [p, o] of [['f', fo], ['b', bo]]) {
+    if (o.s.staged) {
+      $(p + '_att').value = (Math.round(o.s.att * 10) / 10).toString();
+      $(p + '_pothint').textContent = `Gain-staged: the pot is set so the amp's clip light just stays off at the PA2's maximum output (+20 dBu = 0 dBFS). That works out to about ${f(o.s.att)} dB of attenuation (about knob ${f(dbToKnob(o.s.att))} on the estimated curve). The input limit doesn't apply, because the amp reached full power.`;
+    }
+  }
 
   const warns = [];
   for (const o of out) {
@@ -390,9 +404,12 @@ function dbToKnob(a) {
 }
 function syncPots() {
   for (const p of ['f', 'b']) {
-    const knob = $(p + '_potmode').value === 'knob';
+    const mode = $(p + '_potmode').value, knob = mode === 'knob', staged = mode === 'staged';
     $(p + '_knobrow').style.display = knob ? '' : 'none';
-    $(p + '_att').readOnly = knob;
+    $(p + '_att').readOnly = knob || staged;
+    $(p + '_inpos').disabled = staged;
+    $(p + '_maxin').disabled = staged;
+    if (staged) continue;
     if (knob) {
       const k = v(p + '_knob');
       const a = isFinite(k) ? knobToDb(k) : 0;
