@@ -5,148 +5,133 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Speaker and Amp Limiter Calculator (DriveRack PA2)</title>
 <style>
-:root{--bg:#f5f6f8;--card:#ffffff;--ink:#1b1f24;--mut:#5b6470;--line:#d8dde3;--acc:#2563eb;--warn:#b45309}
-@media (prefers-color-scheme: dark){:root{--bg:#0f1216;--card:#171b21;--ink:#e7ebf0;--mut:#9aa4b2;--line:#2a313b;--acc:#60a5fa;--warn:#fbbf24}}
+:root{--bg:#f3f4f6;--card:#fff;--ink:#14181d;--mut:#606a77;--line:#e1e5ea;--soft:#f6f7f9;--acc:#2563eb;--bass:#c2410c;--warn:#b45309;--warnbg:#fef3c7}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1014;--card:#161a20;--ink:#e8ecf1;--mut:#97a1ae;--line:#272e37;--soft:#1c2128;--acc:#60a5fa;--bass:#fb923c;--warn:#fbbf24;--warnbg:#3a2a0a}}
 *{box-sizing:border-box}
-body{margin:0;padding:16px;font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink)}
-main{max-width:980px;margin:0 auto}
-h1{font-size:20px;margin:4px 0 2px}
-.sub{color:var(--mut);margin:0 0 16px;font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
-.full{grid-column:1/-1}
-.card h2{font-size:12px;margin:0 0 6px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
-.sh{font-size:12px;font-weight:600;margin:12px 0 0;opacity:.8}
-label{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:7px 0;font-size:14px}
-.u{color:var(--mut);font-size:12px;white-space:nowrap;margin-left:4px}
-.in{display:flex;align-items:center}
-input,select{width:124px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink);font:inherit;text-align:right}
-input:disabled,select:disabled{opacity:.45}
-.hint{font-size:12px;color:var(--mut);margin:4px 0 0}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media (max-width:620px){.two{grid-template-columns:1fr}}
-.tag{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
-.big{font-size:34px;font-weight:700;color:var(--acc);font-variant-numeric:tabular-nums;margin-top:2px}
-.bar{position:relative;height:10px;border-radius:5px;background:linear-gradient(90deg,var(--line),var(--acc));opacity:.8;margin:14px 0 2px}
-.marker{position:absolute;top:-5px;width:3px;height:20px;background:var(--ink);border-radius:2px;transform:translateX(-50%)}
-.scale{display:flex;justify-content:space-between;font-size:11px;color:var(--mut)}
+body{margin:0;font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+main{max-width:1080px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+h1{font-size:21px;margin:0}
+.sub{color:var(--mut);margin:2px 0 0;font-size:13px}
+.hero{position:sticky;top:0;z-index:5;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:14px;box-shadow:0 4px 16px rgba(0,0,0,.06);display:grid;grid-template-columns:1fr 1fr auto;gap:18px;align-items:center}
+@media(max-width:720px){.hero{grid-template-columns:1fr 1fr;position:static}.hero .act{grid-column:1/-1}}
+.tag{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);font-weight:600}
+.big{font-size:34px;font-weight:750;font-variant-numeric:tabular-nums;line-height:1.1;margin-top:2px}
+#thr_f{color:var(--acc)}#thr_b{color:var(--bass)}
+.bar{position:relative;height:6px;border-radius:3px;background:var(--line);margin:10px 0 3px}
+.marker{position:absolute;top:-4px;width:14px;height:14px;border-radius:50%;background:var(--acc);border:2px solid var(--card);transform:translateX(-50%);transition:left .2s}
+#mk_b{background:var(--bass)}
+.scale{display:flex;justify-content:space-between;font-size:10.5px;color:var(--mut)}
 .why{font-size:12.5px;color:var(--mut);margin-top:6px}
-.combo{font-size:14px;margin-top:14px}
-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:14px;font-variant-numeric:tabular-nums}
-th,td{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}
+.act{display:flex;flex-direction:column;gap:6px;align-items:stretch;min-width:150px}
+.combo{font-size:13.5px;padding:10px 12px;background:var(--soft);border-radius:10px;margin-bottom:12px}
+.warn{display:grid;gap:6px;margin-bottom:12px}.warn:empty{display:none}
+.warn div{background:var(--warnbg);color:var(--warn);border-radius:8px;padding:8px 12px;font-size:13px}
+.err{color:var(--warn);font-size:13px}.err:empty{display:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.full{grid-column:1/-1}
+.card h2{font-size:15px;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--acc)}.dot.b{background:var(--bass)}.dot.s{background:var(--mut)}
+.sh{font-size:11.5px;font-weight:650;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:16px 0 4px;padding-top:12px;border-top:1px solid var(--line)}
+.sh:first-of-type{border-top:0;padding-top:0;margin-top:10px}
+label{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:6px 0;font-size:14px}
+.in{display:flex;align-items:center;gap:6px}
+.u{color:var(--mut);font-size:12px;width:26px}
+input,select{width:120px;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--soft);color:var(--ink);font:inherit;text-align:right;font-variant-numeric:tabular-nums}
+select{text-align:left;width:152px}
+input:focus,select:focus{outline:2px solid var(--acc);outline-offset:-1px;background:var(--card)}
+input:disabled,select:disabled{opacity:.4}
+.seg{display:flex;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:3px;gap:3px;margin:8px 0}
+.seg button{flex:1;border:0;background:transparent;padding:7px;border-radius:7px;font-weight:600;color:var(--mut)}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.hint{font-size:12px;color:var(--mut);margin:4px 0 0}
+button{font:inherit;font-size:14px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+#copy{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
+.u2{color:var(--mut);font-size:12px;text-align:center}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 16px;margin-top:12px}
+summary{cursor:pointer;padding:14px 0;font-weight:600}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:6px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0 14px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:left}
+tr:last-child td{border-bottom:0}
 th{font-size:12px;color:var(--mut);font-weight:600}
 td:nth-child(n+2),th:nth-child(n+2){text-align:right;white-space:nowrap}
-.warn{color:var(--warn);font-size:13px;margin-top:10px}
-.warn div{margin-top:4px}
-.err{color:var(--warn);font-size:13px;min-height:1em}
-.row{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
-button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
-.summary{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:var(--mut);margin-top:10px;word-break:break-word}
-.note{font-size:12.5px;color:var(--mut);margin-top:14px}
-.note li{margin:3px 0}
-.u2{color:var(--mut);font-size:12px}
+.summary{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:var(--mut);margin:0 0 14px;word-break:break-word}
+.note ul{font-size:13px;color:var(--mut);padding-left:18px;margin:6px 0 14px}.note li{margin:4px 0}
 </style>
 </head>
 <body>
 <main>
-  <h1>Two-System Limiter Calculator (customized)</h1>
-  <p class="sub">Full-range stereo (olive or large top, one at a time) and bass, one combined venue limit, DriveRack PA2 thresholds in dBFS.</p>
+<header>
+  <div><h1>Two-System Limiter Calculator</h1>
+  <p class="sub">DriveRack PA2 limiter thresholds for full range + bass, with a combined venue limit.</p></div>
+</header>
 
-  <div class="grid">
+<section class="hero" aria-live="polite">
+  <div><div class="tag" id="tag_f">Full range</div><div class="big" id="thr_f">—</div>
+    <div class="bar"><div class="marker" id="mk_f" style="left:0%"></div></div>
+    <div class="scale"><span>-60</span><span>-40</span><span>-20</span><span>0 dBFS</span></div>
+    <div class="why" id="why_f"></div></div>
+  <div><div class="tag">Bass</div><div class="big" id="thr_b">—</div>
+    <div class="bar"><div class="marker" id="mk_b" style="left:0%"></div></div>
+    <div class="scale"><span>-60</span><span>-40</span><span>-20</span><span>0 dBFS</span></div>
+    <div class="why" id="why_b"></div></div>
+  <div class="act"><button id="copy" type="button">Copy settings</button><span id="cpMsg" class="u2"></span></div>
+</section>
 
-    <section class="card">
-      <h2>Full range (stereo)</h2>
-      <div class="sh">Cabinet</div>
-      <label>Cabinet <span class="in"><select id="f_spk"><option value="large" selected>Large top</option><option value="olive">Olive</option></select></span></label>
-      <label>Continuous (RMS) <span class="in"><input id="f_pc" type="number" value="680" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Peak <span class="in"><input id="f_pp" type="number" value="1360" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Impedance <span class="in"><input id="f_z" type="number" value="8" min="0" step="any"><span class="u">Ω</span></span></label>
-      <label>Sensitivity (1 W / 1 m) <span class="in"><input id="f_sens" type="number" value="97" step="any"><span class="u">dB</span></span></label>
-      <p class="hint">Large top: JBL 2226H + Beyma CP650Ti (680 / 1360 W, 97 dB, PDF). Olive: Beyma 10CMV2 woofer (95 dB) + SMC-8060 tweeter (107 dB, 12 dB pad), so the cabinet is set to 95 dB. Olive ratings are the sum of both drivers (300 / 600 W).</p>
-      <div class="sh">Amplifier (2 × 750 W, 8 Ω, shared by both cabinets)</div>
-      <label>Power into 8 Ω <span class="in"><input id="f_p8" type="number" value="750" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Power into 4 Ω <span class="in"><input id="f_p4" type="number" value="1200" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Voltage gain <span class="in"><input id="f_gain" type="number" value="26" step="any"><span class="u">dB</span></span></label>
-      <label>Pot attenuation <span class="in"><input id="f_att" type="number" value="0" min="0" step="any"><span class="u">dB</span></span></label>
-      <p class="hint">0 dB = pot fully up. Turning the pot down by X dB lowers the amp's effective gain by X dB.</p>
-      <label>Nominal input <span class="in"><select id="f_ref"><option value="1.12">1.12 V</option><option value="1.228" selected>+4 dBu (1.228 V)</option></select></span></label>
-      <p class="hint">The 4 Ω figure is a placeholder and is not used at 8 Ω.</p>
-      <div class="sh">Venue</div>
-      <label>Speakers at measurement point <span class="in"><input id="f_n" type="number" value="2" min="1" step="1"></span></label>
-      <label>Measured at <span class="in"><input id="f_d" type="number" value="10" min="0" step="any"><span class="u">m</span></span></label>
-    </section>
+<div class="err" id="err"></div>
+<div class="combo" id="combo"></div>
+<div class="warn" id="warn"></div>
 
-    <section class="card">
-      <h2>Bass</h2>
-      <div class="sh">Speaker (each)</div>
-      <label>Continuous (RMS) <span class="in"><input id="b_pc" type="number" value="800" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Peak <span class="in"><input id="b_pp" type="number" value="1600" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Impedance <span class="in"><input id="b_z" type="number" value="4" min="0" step="any"><span class="u">Ω</span></span></label>
-      <label>Sensitivity (1 W / 1 m) <span class="in"><input id="b_sens" type="number" value="100" step="any"><span class="u">dB</span></span></label>
-      <p class="hint">Dynacord SRC 400 LO from your PDF: 800 W rated, 1600 W program, 4 &Omega;, 100 dB.</p>
-      <div class="sh">Amplifier</div>
-      <label>Power into 4 Ω <span class="in"><input id="b_p4" type="number" value="1700" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Power into 8 Ω <span class="in"><input id="b_p8" type="number" value="950" min="0" step="any"><span class="u">W</span></span></label>
-      <label>Voltage gain <span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class="u">dB</span></span></label>
-      <label>Pot attenuation <span class="in"><input id="b_att" type="number" value="0" min="0" step="any"><span class="u">dB</span></span></label>
-      <p class="hint">0 dB = pot fully up. Turning the pot down by X dB lowers the amp's effective gain by X dB.</p>
-      <label>Nominal input <span class="in"><select id="b_ref"><option value="1.12" selected>1.12 V</option><option value="1.228">+4 dBu (1.228 V)</option></select></span></label>
-      <div class="sh">Wiring</div>
-      <label>Mode <span class="in"><select id="b_wire"><option value="stereo">Stereo</option><option value="mono">Mono</option></select></span></label>
-      <label>Speakers in parallel <span class="in"><input id="b_par" type="number" value="2" min="1" step="1" disabled><span class="u">pcs</span></span></label>
-      <p class="hint">Mono runs the bass speakers in parallel on one channel. The amp then drives half the impedance, and the venue count uses the parallel count. The 4 Ω figure above is a placeholder.</p>
-      <div class="sh">Venue</div>
-      <label>Speakers at measurement point <span class="in"><input id="b_n" type="number" value="2" min="1" step="1"></span></label>
-      <label>Measured at <span class="in"><input id="b_d" type="number" value="10" min="0" step="any"><span class="u">m</span></span></label>
-    </section>
+<div class="grid">
+<section class="card">
+  <h2><span class="dot"></span>Full range</h2>
+  <div class="seg" id="seg"><button type="button" data-v="large">Large top</button><button type="button" data-v="olive">Olive</button></div>
+  <select id="f_spk" hidden><option value="large" selected>Large top</option><option value="olive">Olive</option></select>
+  <div class="sh">Speaker (each)</div>
+  <label><span>Continuous</span><span class="in"><input id="f_pc" type="number" value="680" step="any"><span class=u>W</span></span></label><label><span>Peak</span><span class="in"><input id="f_pp" type="number" value="1360" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="f_z" type="number" value="8" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="f_sens" type="number" value="97" step="any"><span class=u>dB</span></span></label>
+  <div class="sh">Amplifier</div>
+  <label><span>Power into 8 Ω</span><span class="in"><input id="f_p8" type="number" value="750" step="any"><span class=u>W</span></span></label><label><span>Power into 4 Ω</span><span class="in"><input id="f_p4" type="number" value="1200" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="f_gain" type="number" value="26" step="any"><span class=u>dB</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="f_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
+  <label><span>Nominal input</span><span class="in"><select id="f_ref"><option value="1.12">1.12 V</option><option value="1.228" selected>+4 dBu (1.228 V)</option></select></span></label>
+  <p class="hint">Pot at 0 dB = fully up. Each dB down raises the threshold by 1 dB.</p>
+  <div class="sh">At the venue</div>
+  <label><span>Speakers counted</span><span class="in"><input id="f_n" type="number" value="2" step="any" min="1" step="1"><span class="u"></span></span></label><label><span>Distance</span><span class="in"><input id="f_d" type="number" value="10" step="any"><span class=u>m</span></span></label>
+</section>
 
-    <section class="card">
-      <h2>Shared limiter and venue</h2>
-      <label>Program crest factor <span class="in"><input id="cf" type="number" value="12" min="0" step="any"><span class="u">dB</span></span></label>
-      <label>Extra safety margin <span class="in"><input id="margin" type="number" value="0" min="0" step="any"><span class="u">dB</span></span></label>
-      <label>Over Easy (for your notes) <span class="in"><select id="oe"><option>OFF</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></span></label>
-      <label>Venue max level <span class="in"><input id="lim" type="number" value="100" step="any"><span class="u">dBA</span></span></label>
-      <label>dBA correction <span class="in"><input id="corr" type="number" value="0" step="any"><span class="u">dB</span></span></label>
-      <p class="hint">Clear the venue max level for no limit. The correction is dBA minus unweighted SPL for your program, usually negative. 0 is the cautious choice.</p>
-    </section>
+<section class="card">
+  <h2><span class="dot b"></span>Bass</h2>
+  <div class="sh">Speaker (each)</div>
+  <label><span>Continuous</span><span class="in"><input id="b_pc" type="number" value="800" step="any"><span class=u>W</span></span></label><label><span>Peak</span><span class="in"><input id="b_pp" type="number" value="1600" step="any"><span class=u>W</span></span></label><label><span>Impedance</span><span class="in"><input id="b_z" type="number" value="4" step="any"><span class=u>Ω</span></span></label><label><span>Sensitivity 1 W/1 m</span><span class="in"><input id="b_sens" type="number" value="100" step="any"><span class=u>dB</span></span></label>
+  <div class="sh">Amplifier</div>
+  <label><span>Power into 4 Ω</span><span class="in"><input id="b_p4" type="number" value="1700" step="any"><span class=u>W</span></span></label><label><span>Power into 8 Ω</span><span class="in"><input id="b_p8" type="number" value="950" step="any"><span class=u>W</span></span></label><label><span>Voltage gain</span><span class="in"><input id="b_gain" type="number" value="38.2" step="any"><span class=u>dB</span></span></label><label><span>Pot attenuation</span><span class="in"><input id="b_att" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
+  <label><span>Nominal input</span><span class="in"><select id="b_ref"><option value="1.12" selected>1.12 V</option><option value="1.228">+4 dBu (1.228 V)</option></select></span></label>
+  <div class="sh">Wiring</div>
+  <label><span>Mode</span><span class="in"><select id="b_wire"><option value="stereo">Stereo</option><option value="mono">Mono (parallel)</option></select></span></label>
+  <label><span>Speakers in parallel</span><span class="in"><input id="b_par" type="number" value="2" step="any" min="1" step="1" disabled><span class=u>pcs</span></span></label>
+  <div class="sh">At the venue</div>
+  <label><span>Speakers counted</span><span class="in"><input id="b_n" type="number" value="2" step="any" min="1" step="1"><span class="u"></span></span></label><label><span>Distance</span><span class="in"><input id="b_d" type="number" value="10" step="any"><span class=u>m</span></span></label>
+</section>
 
-    <section class="card full">
-      <h2>Result (selected cabinet)</h2>
-      <div class="err" id="err"></div>
-      <div class="two">
-        <div>
-          <div class="tag" id="tag_f">Full range</div>
-          <div class="big" id="thr_f">—</div>
-          <div class="bar"><div class="marker" id="mk_f" style="left:0%"></div></div>
-          <div class="scale"><span>-60</span><span>-40</span><span>-20</span><span>0 dBFS</span></div>
-          <div class="why" id="why_f"></div>
-        </div>
-        <div>
-          <div class="tag">Bass</div>
-          <div class="big" id="thr_b">—</div>
-          <div class="bar"><div class="marker" id="mk_b" style="left:0%"></div></div>
-          <div class="scale"><span>-60</span><span>-40</span><span>-20</span><span>0 dBFS</span></div>
-          <div class="why" id="why_b"></div>
-        </div>
-      </div>
-      <div class="combo" id="combo"></div>
-      <div class="warn" id="warn"></div>
-      <table id="tbl"></table>
-      <div class="row"><button id="copy" type="button">Copy setting</button><span id="cpMsg" class="u2"></span></div>
-      <div class="summary" id="summary"></div>
-    </section>
+<section class="card">
+  <h2><span class="dot s"></span>Limiter and venue</h2>
+  <div class="sh">Program</div>
+  <label><span>Crest factor</span><span class="in"><input id="cf" type="number" value="12" step="any" min="0"><span class=u>dB</span></span></label><label><span>Safety margin</span><span class="in"><input id="margin" type="number" value="0" step="any" min="0"><span class=u>dB</span></span></label>
+  <label><span>Over Easy (notes)</span><span class="in"><select id="oe"><option>OFF</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></span></label>
+  <div class="sh">Venue</div>
+  <label><span>Max level</span><span class="in"><input id="lim" type="number" value="100" step="any"><span class=u>dBA</span></span></label><label><span>dBA correction</span><span class="in"><input id="corr" type="number" value="0" step="any"><span class=u>dB</span></span></label>
+  <p class="hint">Clear max level for no limit. Correction is dBA minus unweighted SPL, usually negative; 0 is cautious.</p>
+</section>
+</div>
 
-    <section class="card full">
-      <h2>Both full-range options (same amp and bass)</h2>
-      <table id="cmp"></table>
-      <p class="hint">Each column uses that cabinet's ratings with the shared amp, the bass set, and the venue settings above. The bass threshold is shown after any common reduction.</p>
-    </section>
-
-  </div>
-
-  <div class="note">
-    <strong>How it works</strong>
-    <ul>
+<details open><summary>Compare cabinets</summary>
+  <table id="cmp"></table>
+</details>
+<details><summary>Detailed breakdown</summary>
+  <table id="tbl"></table>
+  <div class="summary" id="summary"></div>
+</details>
+<details class="note"><summary>How it works</summary><ul>
       <li>Each system's continuous and peak ceilings come from its speaker ratings and the amp's full-power voltage. The peak check uses the crest factor plus the PA2's roughly 3 dB overshoot.</li>
       <li>The venue limit adds both systems' sound at the measurement point, power-summed. If the total is too high, both thresholds drop by the same amount until it fits.</li>
       <li>The threshold is set where each amp reaches full power. The nominal input sets only the headroom display.</li>
@@ -156,20 +141,14 @@ button{font:inherit;padding:7px 12px;border-radius:6px;border:1px solid var(--li
       <li>The venue calculation assumes free-field distance falloff (6 dB per doubling). Indoors, reflections raise the level, so measure and adjust the correction.</li>
       <li>Mono sum level is not modelled. If you sum L and R into one bass feed without a pad, the feed is up to 6 dB hotter, so lower the bass threshold by that amount.</li>
       <li>Over Easy changes the knee shape, not this math. Use the 3 dB overshoot margin when you run it hard.</li>
-    </ul>
-  </div>
-
-  <section class="card full">
-    <h2>Notes and sources</h2>
-    <ul class="hint" style="margin:0;padding-left:18px;line-height:1.6">
-      <li>Olive cabinet: Beyma 10CMV2 woofer, 8 &Omega;, 250 W AES / 500 W program, 95 dB 1 W/1 m. Beyma SMC-8060 tweeter, 8 &Omega;, 107 dB 1 W/1 m, reduced by a 12 dB pad, which brings it close to the woofer's level. The cabinet uses 95 dB. The SMC-8060 without /N is taken to have the same power rating as the /N.</li>
+    </ul></details>
+<details class="note"><summary>Notes and sources</summary><ul><li>Olive cabinet: Beyma 10CMV2 woofer, 8 &Omega;, 250 W AES / 500 W program, 95 dB 1 W/1 m. Beyma SMC-8060 tweeter, 8 &Omega;, 107 dB 1 W/1 m, reduced by a 12 dB pad, which brings it close to the woofer's level. The cabinet uses 95 dB. The SMC-8060 without /N is taken to have the same power rating as the /N.</li>
       <li>Olive power is the sum of the two drivers' ratings: 300 W continuous (250 + 50), 600 W peak (500 + 100).</li>
       <li>Large top: JBL 2226H woofer (97 dB) plus Beyma CP650Ti (110 dB). The sensitivity uses the JBL figure only, so the real cabinet level is probably higher.</li>
       <li>Bass: Dynacord SRC 400 LO, 800 W rated, 1600 W program, 4 &Omega;, 100 dB. The 1600 W is a program rating, so the peak check is conservative.</li>
       <li>Amp: Outline T6.5, 1700 W at 4 &Omega;, 950 W at 8 &Omega;. Mono bass (2 &Omega; load) currently uses the 4 &Omega; figure. The PDF lists a higher 2 &Omega; rating (3000 W), which is not entered yet.</li>
       <li>Venue dBA limit, distances, speaker counts and the dBA correction are placeholders. Enter your own values.</li>
-    </ul>
-  </section>
+    </ul></details>
 </main>
 
 <script>
@@ -394,6 +373,11 @@ document.querySelectorAll('input, select').forEach(el => el.addEventListener('in
 applyPreset();
 syncWiring();
 calc();
+</script>
+<script>
+(function(){const sel=document.getElementById('f_spk');const btns=document.querySelectorAll('#seg button');
+function paint(){btns.forEach(b=>b.classList.toggle('on',b.dataset.v===sel.value));}
+btns.forEach(b=>b.addEventListener('click',()=>{sel.value=b.dataset.v;sel.dispatchEvent(new Event('input'));paint();}));paint();})();
 </script>
 </body>
 </html>
